@@ -12,3 +12,4 @@ app.get('/', (req, res, next) => {
 });
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.listen(PORT);
+console.log(`Listening on ${PORT}`);
