@@ -3,7 +3,6 @@
 @import 'abstract/minmix';
 @import 'abstract/functions';
 
-
 // Base
 @import 'base/normalize';
 @import 'base/reset';
@@ -12,7 +11,6 @@
 @import 'base/typography';
 @import 'base/utilities';
 
-
 // Layout
 @import 'layout/grid';
 @import 'layout/header';
@@ -20,16 +18,15 @@
 @import 'layout/footer';
 @import 'layout/forms';
 
-
 // Components
 @import 'components/button';
-
+@import 'components/details';
+@import 'components/navigation';
 
 // Pages
 @import 'pages/home';
 @import 'pages/about';
 @import 'pages/contact';
-
 
 // Responsive
 @import 'layout/responsive';

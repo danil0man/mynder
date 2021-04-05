@@ -1,0 +1,28 @@
+.navigation {
+	margin-top: 1rem;
+	background-color: lightblue;
+	display: grid;
+	grid-template-rows: 5rem;
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-areas: 'a b c';
+}
+
+.left {
+	grid-area: a;
+}
+
+.right {
+	grid-area: c;
+}
+
+.navigation__form {
+	grid-area: b;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	grid-template-areas: 'left right';
+}
+
+.navigation__submit {
+	grid-area: right;
+	grid-row: 1 / 3;
+}

@@ -1,0 +1,48 @@
+.details {
+	display: flex;
+	flex-direction: column;
+	max-width: 85%;
+	margin: 0 auto;
+
+	&__title {
+		text-align: center;
+		font-size: 4rem;
+		text-transform: uppercase;
+		color: lightseagreen;
+		margin: 1.5rem 0;
+	}
+
+	&__img {
+		border-radius: 0.5rem;
+		box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
+	}
+
+	&__rating {
+		margin-top: 2rem;
+		font-size: 1.6rem;
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	&__summary {
+		border: 1px solid black;
+		padding: 1rem;
+		font-size: 1.3rem;
+		line-height: 1.5;
+	}
+
+	&__starring {
+		border: 1px solid black;
+		padding: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	&__list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		height: 5rem;
+		justify-content: space-around;
+		font-size: 1.3rem;
+	}
+}
