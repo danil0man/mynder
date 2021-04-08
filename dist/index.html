@@ -21,6 +21,7 @@
     <header class="header">
       <!-- Main Logo -->
       <h1 class="logo">Mynder</h1>
+      <!-- Hamburger Menu -->
       <button
         class="menu"
         onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))"
@@ -39,70 +40,74 @@
         </svg>
       </button>
     </header>
-    <!-- Main -->
-    <main class="main">
-      <div class="container">
-        <!-- Details of movie -->
-        <section class="details">
-          <!-- Title of the Movie -->
-          <h2 class="details__title">Movie Title</h2>
-          <!-- Picture of the Movie -->
-          <img
-            src="https://source.unsplash.com/270x400/?movies"
-            alt="movie screen"
-            class="details__img"
-          />
-          <!-- Rating Area -->
-          <div class="details__rating">
-            <h3 class="details__rating-label">Rating</h3>
-            <div class="details__star">🌟🌟🌟🌟🌟</div>
-          </div>
-          <!-- Movie Summary -->
-          <div class="details__summary">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi
-            nostrum totam ad excepturi atque quis cum maiores ullam velit minus
-            corporis soluta, ea eum quam amet quo animi cupiditate sint fugit
-            harum commodi culpa ut mollitia perspiciatis? Ad dolorum enim
-            aperiam earum maiores. Doloremque tempore cupiditate quo provident
-            numquam esse iste, perferendis molestias cum hic odio vel magni
-            dolore quaerat.
-          </div>
-          <!-- Movie Starring -->
-          <div class="details__starring">
-            <ul class="details__list">
-              <li class="details__items">Starring</li>
-              <li class="details__items">Director</li>
-              <li class="details__items">Etc</li>
-            </ul>
-          </div>
-        </section>
+
+    <!-- Details of movie -->
+    <section class="details">
+      <!-- Title of the Movie -->
+      <h2 class="details__title">Movie Title</h2>
+      <!-- Picture of the Movie -->
+      <img
+        src="https://source.unsplash.com/270x400/?movies"
+        alt="movie screen"
+        class="details__img"
+      />
+      <!-- Rating Area -->
+      <div class="details__rating">
+        <h3 class="details__rating-label">Rating</h3>
+        <div class="details__star">🌟🌟🌟🌟🌟</div>
       </div>
-      <!-- Navigation Area -->
-      <section class="navigation">
-        <!-- Navigation Buttons -->
-        <button class="left">◀️</button>
-        <button class="right">▶️</button>
-        <!-- Navigation Form -->
-        <form class="navigation__form">
-          <!-- Movie Year -->
-          <input
-            type="number"
-            name="year"
-            id="year"
-            min="1900"
-            placeholder="Year"
-          />
-          <!-- Movie Genre -->
-          <select name="genre" id="genre">
-            <option value="horror">Horror</option>
-            <option value="comedy">Comedy</option>
-            <option value="action">Action</option>
-            <option value="drama">Drama</option>
-          </select>
-          <!-- Submit Button -->
-          <input type="submit" value="Search" class="navigation__submit" />
-        </form>
-      </section>
-    </main>
+      <!-- Movie Summary -->
+      <div class="details__summary">
+        <strong>Summary: </strong>Lorem ipsum dolor sit amet, consectetur
+        adipisicing elit. Sequi nostrum totam ad excepturi atque quis cum
+        maiores ullam velit minus corporis soluta, ea eum quam amet quo animi
+        cupiditate sint fugit harum commodi culpa ut mollitia perspiciatis? Ad
+        dolorum enim aperiam earum maiores. Doloremque tempore cupiditate quo
+        provident numquam esse iste, perferendis molestias cum hic odio vel
+        magni dolore quaerat.
+      </div>
+      <!-- Movie Starring -->
+      <div class="details__starring">
+        <ul class="details__list">
+          <li class="details__items">
+            <strong>Director: </strong>Wes Anderson
+          </li>
+          <li class="details__items">
+            <strong>Writers: </strong>Wes Anderson, Roman Coppola
+          </li>
+          <li class="details__items">
+            <strong>Stars: </strong>Jared Gilman, Kara Hayward, Bruce WillisWes
+            Anderson, Roman Coppola
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <section class="navigation">
+      <!-- Navigation Buttons -->
+      <button class="left">◀️</button>
+      <button class="right">▶️</button>
+      <!-- Navigation Form -->
+      <form class="navigation__form">
+        <!-- Movie Year -->
+        <input
+          type="number"
+          name="year"
+          id="year"
+          min="1900"
+          placeholder="Year"
+        />
+        <!-- Movie Genre -->
+        <select name="genre" id="genre">
+          <option value="horror">Horror</option>
+          <option value="comedy">Comedy</option>
+          <option value="action">Action</option>
+          <option value="drama">Drama</option>
+        </select>
+        <!-- Submit Button -->
+        <input type="submit" value="Search" class="navigation__submit" />
+      </form>
+    </section>
   </body>
 </html>

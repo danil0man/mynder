@@ -6,13 +6,14 @@ $header-background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 7vh;
+  height: 40px;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 900;
+  flex-shrink: 0;
 }
 
 .logo {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   margin-left: 1rem;
   color: $header-color;
 }
@@ -26,7 +27,7 @@ $header-background-color: black;
   padding: 0;
   align-items: center;
   justify-content: center;
-  width: 5rem;
+  width: 4rem;
   margin: 0;
 }
 .line {
