@@ -2,14 +2,16 @@ $title-text-color: black;
 $body-text-color: black;
 
 .details {
+  margin: 0 auto;
+  /*max width&height both work*/
+  width: 320px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   flex-grow: 1;
-  max-width: 330px;
-  margin: 0 auto;
-  font-family: "Source Sans Pro", sans-serif;
+  flex-shrink: 1;
   overflow: scroll;
 
   &__title {
@@ -21,14 +23,17 @@ $body-text-color: black;
 
   &__img {
     border-radius: 0.5rem;
+
     width: 100%;
-    min-width: 200px;
+
     height: auto;
+    flex-shrink: 2;
   }
 
   &__rating {
     margin: 0.5rem 0;
     font-size: 1.6rem;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -43,28 +48,24 @@ $body-text-color: black;
     padding: 0.25rem 1rem;
     font-size: 1.3rem;
     line-height: 1.5;
-    flex-basis: 100px;
+    width: 100%;
     height: 10%;
     overflow: scroll;
-  }
-
-  &__starring {
-    margin-top: 1rem;
-    border: 1px solid black;
-    padding: 0.25rem 1rem;
-    font-size: 1.3rem;
-    line-height: 1.5;
-    flex-basis: 70px;
-    height: 7%;
-    overflow: scroll;
+    flex-grow: 1;
+    flex-shrink: 1;
   }
 
   &__list {
-    list-style: none;
+    border: 1px solid black;
+    padding: 0.25rem 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    height: 8%;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    justify-content: space-around;
+    justify-content: flex-start;
     font-size: 1.3rem;
+    line-height: 1.5;
+    overflow: scroll;
   }
 }
