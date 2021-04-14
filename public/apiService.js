@@ -5,7 +5,7 @@ let searchURL = 'search/';
 let topRatedURL = 'movie/top_rated';
 let searchResults = [];
 let index = 0;
-
+let shits = '';
 
 let buildSearchURL = (searchQuery) => {
     
