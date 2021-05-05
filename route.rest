@@ -17,10 +17,11 @@ GET http://localhost:5001/api/movies/384018
 //with a movie description, list of actors, and director?
 //GET /movie/top_rated
 
-GET http://localhost:5001/api/genres
+GET http://localhost:5001/api/genres/movie/list
+
 
 
 ###
 
-GET http://localhost:5001/api/discover/2019/14
+GET http://localhost:5001/api/discover/2020/12
 
