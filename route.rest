@@ -1,0 +1,26 @@
+GET http://localhost:5001/
+
+###
+
+GET http://localhost:5001/api/movies
+
+###
+
+GET http://localhost:5001/api/movies/384018
+//http://localhost:5001/api/movies/:moviesid
+
+###
+
+//how to send?
+//this is an example for a specific movie, how do we get all in a genre by year?
+//https://api.themoviedb.org/3/movie/76341?api_key=<<api_key>>
+//with a movie description, list of actors, and director?
+//GET /movie/top_rated
+
+GET http://localhost:5001/api/genres
+
+
+###
+
+GET http://localhost:5001/api/discover/2019/14
+
