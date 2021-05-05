@@ -7,7 +7,7 @@ const mdb = new MovieDB('ad65f3f346cc7869630deac544b0f1f7');
 module.exports = genresRouter;
 
   //retrive list of movie genere codes
-genresRouter.get('/:year/:genre', async (req, res, next) => {
+genresRouter.get('/movie/list', async (req, res, next) => {
     try {
         const args = {
         pathParameters: {
