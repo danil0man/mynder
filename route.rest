@@ -24,7 +24,7 @@ GET http://localhost:5001/api/movies/top_rated
 ###
 
 // "genres"
-GET http://localhost:5001/api/genres/movie/list
+GET http://localhost:5001/api/genres
 
 
 ###
@@ -32,3 +32,6 @@ GET http://localhost:5001/api/genres/movie/list
 // "poster_path", "release_date", "title", "vote_average"
 GET http://localhost:5001/api/discover/2020/12
 
+###
+
+GET https://api.themoviedb.org/3/account?ad65f3f346cc7869630deac544b0f1f7

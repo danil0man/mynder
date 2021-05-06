@@ -13,6 +13,8 @@ discoverRouter.get('/:year/:genre', async (req, res, next) => {
         query: {
             year: year,
             with_genres: genre,
+            region: "US",
+            language: "en-US"
 
             // query string, i.e. session_id
             // NOTE: api_key and language will be added to query by default, don't need specify these values
