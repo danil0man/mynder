@@ -15,12 +15,23 @@ GET http://localhost:5001/api/movies/384018
 //this is an example for a specific movie, how do we get all in a genre by year?
 //https://api.themoviedb.org/3/movie/76341?api_key=<<api_key>>
 //with a movie description, list of actors, and director?
-//GET /movie/top_rated
 
+
+// top-rated
+// 
+GET http://localhost:5001/api/movies/top_rated
+
+###
+
+// "genres"
 GET http://localhost:5001/api/genres
 
 
 ###
 
-GET http://localhost:5001/api/discover/2019/14
+// "poster_path", "release_date", "title", "vote_average"
+GET http://localhost:5001/api/discover/2020/12
 
+###
+
+GET https://api.themoviedb.org/3/account?ad65f3f346cc7869630deac544b0f1f7
