@@ -5,14 +5,15 @@ const mdb = new MovieDB('ad65f3f346cc7869630deac544b0f1f7');
 
 module.exports = discoverRouter;
 
-  //retrive list of movie genere codes
-discoverRouter.get('/:year/:genre', async (req, res, next) => {
-    const {year, genre} = req.params
+  //retrive list of movies by year and genre codes
+discoverRouter.get('/:year/:genre/:page', async (req, res, next) => {
+    const {year, genre, page} = req.params
     try {
         const args = {
         query: {
             year: year,
             with_genres: genre,
+            page: page,
             region: "US",
             language: "en-US"
 
@@ -20,8 +21,8 @@ discoverRouter.get('/:year/:genre', async (req, res, next) => {
             // NOTE: api_key and language will be added to query by default, don't need specify these values
             },
         };
-        const movie = await mdb.discover.movie(args);
-        res.status(200).send(movie);
+        const moviesList = await mdb.discover.movie(args); // #2 & #3 arrow
+        res.status(200).send(moviesList); //#4 arrow
         /*
         {
             data: Object. Parsed json data of response

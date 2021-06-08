@@ -30,7 +30,7 @@ GET http://localhost:5001/api/genres
 ###
 
 // "poster_path", "release_date", "title", "vote_average"
-GET http://localhost:5001/api/discover/2020/12
+GET http://localhost:5001/api/discover/2020/12/1
 
 ###
 
