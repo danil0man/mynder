@@ -5,7 +5,8 @@
   "main": "express-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node express-server.js"
+    "start": "node express-server.js",
+    "dev": "nodemon express-server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
     "node-themoviedb": "^0.2.8"
   },
   "devDependencies": {

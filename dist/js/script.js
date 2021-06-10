@@ -4,8 +4,8 @@ let searchMovieButton = document.querySelector('#navigation__submit');
 let pageSearchResults = 1
 
 
-searchMovieButton.addEventListener('click', (e) => {
-    e.preventDefault();
+searchMovieButton.addEventListener('click', (event) => {
+    event.preventDefault();
     console.log(movieYear.value);
 
     const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
