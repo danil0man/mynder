@@ -21,6 +21,9 @@ searchMovieButton.addEventListener("click", (event) => {
     .then((jsonResponse) => {
       document.getElementById("current-movie-title").innerHTML =
         jsonResponse.data.results[pageSearchResults].original_title;
+      console.log(jsonResponse.data.results[pageSearchResults].vote_average);
+      document.getElementById("details__rating-number").innerHTML =
+        jsonResponse.data.results[pageSearchResults].vote_average;
     });
 });
 
