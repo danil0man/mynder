@@ -19,10 +19,8 @@ searchMovieButton.addEventListener("click", (event) => {
       (networkError) => console.log(networkError.message)
     )
     .then((jsonResponse) => {
-      const movieTitle =
+      document.getElementById("current-movie-title").innerHTML =
         jsonResponse.data.results[pageSearchResults].original_title;
-      console.log(movieTitle);
-      document.getElementById("current-movie-title").innerHTML = movieTitle;
     });
 });
 
