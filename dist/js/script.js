@@ -26,6 +26,11 @@ searchMovieButton.addEventListener("click", (event) => {
         jsonResponse.data.results[pageSearchResults].vote_average;
       document.getElementById("details__summary--body").innerHTML =
         jsonResponse.data.results[pageSearchResults].overview;
+      const moviePosterPath = `${url}${jsonResponse.data.results[pageSearchResults].poster_path}`;
+      console.log(moviePosterPath);
+      document.getElementById(
+        "details__img"
+      ).src = `${url}${jsonResponse.data.results[pageSearchResults].poster_path}`;
     });
 });
 
