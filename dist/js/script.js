@@ -3,7 +3,7 @@ let genreDropdown = document.querySelector("#genre");
 let searchMovieButton = document.querySelector("#navigation__submit");
 let pageSearchResults = 1;
 
-searchMovieButton.addEventListener("click", (event) => {
+const searchMovie = (event) => {
   event.preventDefault();
   console.log(movieYear.value);
 
@@ -26,13 +26,14 @@ searchMovieButton.addEventListener("click", (event) => {
         jsonResponse.data.results[pageSearchResults].vote_average;
       document.getElementById("details__summary--body").innerHTML =
         jsonResponse.data.results[pageSearchResults].overview;
-      const moviePosterPath = `${url}${jsonResponse.data.results[pageSearchResults].poster_path}`;
-      console.log(moviePosterPath);
-      document.getElementById(
-        "details__img"
-      ).src = `${url}${jsonResponse.data.results[pageSearchResults].poster_path}`;
+      // get proper url for movie poster and insert below.
+      // document.getElementById("details__img".src = ;
     });
-});
+};
+
+searchMovieButton.addEventListener("click", searchMovie);
+
+// nextMovieButton.addEventListener("click", )
 
 window.addEventListener("load", (e) => {
   //on load, popluate/fetch genres
