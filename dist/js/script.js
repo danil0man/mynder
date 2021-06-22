@@ -2,6 +2,7 @@ let movieYear = document.querySelector("#year");
 let genreDropdown = document.querySelector("#genre");
 let searchMovieButton = document.querySelector("#navigation__submit");
 let nextMovieButton = document.querySelector("#navigation__next");
+let previousMovieButton = document.querySelector("#navigation__previous");
 let pageSearchResults = 1;
 
 const searchMovie = (event) => {
@@ -19,7 +20,6 @@ const searchMovie = (event) => {
     .then((jsonResponse) => {
       document.getElementById("current-movie-title").innerHTML =
         jsonResponse.data.results[pageSearchResults].original_title;
-      console.log(jsonResponse.data.results[pageSearchResults].vote_average);
       document.getElementById("details__rating--number").innerHTML =
         jsonResponse.data.results[pageSearchResults].vote_average;
       document.getElementById("details__summary--body").innerHTML =
@@ -32,13 +32,26 @@ const searchMovie = (event) => {
 searchMovieButton.addEventListener("click", searchMovie);
 
 const nextMovie = () => {
-  console.log("nextMovie fired");
-  pageSearchResults += 1;
-  console.log(pageSearchResults);
+  console.log("start: " + pageSearchResults);
+  if (pageSearchResults < 19) {
+    pageSearchResults += 1;
+  }
+  console.log("end: " + pageSearchResults);
   searchMovie();
 };
 
 nextMovieButton.addEventListener("click", nextMovie);
+
+const previousMovie = () => {
+  console.log("start: " + pageSearchResults);
+  if (pageSearchResults > 1) {
+    pageSearchResults -= 1;
+  }
+  console.log("end: " + pageSearchResults);
+  searchMovie();
+};
+
+previousMovieButton.addEventListener("click", previousMovie);
 
 window.addEventListener("load", (e) => {
   //on load, popluate/fetch genres
