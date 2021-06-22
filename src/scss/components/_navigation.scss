@@ -7,20 +7,18 @@
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "a b c";
   flex-shrink: 0;
-}
-
-.left {
-  grid-area: a;
-  background-color: transparent;
-  color: $header-color;
-  border: none;
-}
-
-.right {
-  grid-area: c;
-  background-color: transparent;
-  color: $header-color;
-  border: none;
+  &__previous {
+    grid-area: a;
+    background-color: transparent;
+    color: $header-color;
+    border: none;
+  }
+  &__next {
+    grid-area: c;
+    background-color: transparent;
+    color: $header-color;
+    border: none;
+  }
 }
 
 .navigation__form {

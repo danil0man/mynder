@@ -87,10 +87,10 @@
     <!-- Navigation Footer -->
     <section class="navigation">
       <!-- Navigation Buttons -->
-      <button class="left">◀️</button>
-      <button class="right">▶️</button>
+      <button class="navigation__previous" id="navigation__previous">◀️</button>
+      <button class="navigation__next" id="navigation__next">▶️</button>
       <!-- Navigation Form -->
-      <form class="navigation__form">
+      <form class="navigation__form" onsubmit="return false;">
         <!-- Movie Year -->
         <input type="number" name="year" id="year" min="1900" required />
         <!-- Movie Genre -->

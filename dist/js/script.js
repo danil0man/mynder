@@ -1,12 +1,10 @@
 let movieYear = document.querySelector("#year");
 let genreDropdown = document.querySelector("#genre");
 let searchMovieButton = document.querySelector("#navigation__submit");
+let nextMovieButton = document.querySelector("#navigation__next");
 let pageSearchResults = 1;
 
 const searchMovie = (event) => {
-  event.preventDefault();
-  console.log(movieYear.value);
-
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
     .then(
@@ -33,7 +31,14 @@ const searchMovie = (event) => {
 
 searchMovieButton.addEventListener("click", searchMovie);
 
-// nextMovieButton.addEventListener("click", )
+const nextMovie = () => {
+  console.log("nextMovie fired");
+  pageSearchResults += 1;
+  console.log(pageSearchResults);
+  searchMovie();
+};
+
+nextMovieButton.addEventListener("click", nextMovie);
 
 window.addEventListener("load", (e) => {
   //on load, popluate/fetch genres
