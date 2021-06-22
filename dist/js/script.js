@@ -4,6 +4,7 @@ let searchMovieButton = document.querySelector("#navigation__submit");
 let nextMovieButton = document.querySelector("#navigation__next");
 let previousMovieButton = document.querySelector("#navigation__previous");
 let pageSearchResults = 1;
+let movieIndexPerPage = 0;
 
 const searchMovie = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
@@ -19,11 +20,11 @@ const searchMovie = (event) => {
     )
     .then((jsonResponse) => {
       document.getElementById("current-movie-title").innerHTML =
-        jsonResponse.data.results[pageSearchResults].original_title;
+        jsonResponse.data.results[movieIndexPerPage].original_title;
       document.getElementById("details__rating--number").innerHTML =
-        jsonResponse.data.results[pageSearchResults].vote_average;
+        jsonResponse.data.results[movieIndexPerPage].vote_average;
       document.getElementById("details__summary--body").innerHTML =
-        jsonResponse.data.results[pageSearchResults].overview;
+        jsonResponse.data.results[movieIndexPerPage].overview;
       // get proper url for movie poster and insert below.
       // document.getElementById("details__img".src = ;
     });
@@ -32,22 +33,18 @@ const searchMovie = (event) => {
 searchMovieButton.addEventListener("click", searchMovie);
 
 const nextMovie = () => {
-  console.log("start: " + pageSearchResults);
-  if (pageSearchResults < 19) {
-    pageSearchResults += 1;
+  if (movieIndexPerPage < 19) {
+    movieIndexPerPage += 1;
   }
-  console.log("end: " + pageSearchResults);
   searchMovie();
 };
 
 nextMovieButton.addEventListener("click", nextMovie);
 
 const previousMovie = () => {
-  console.log("start: " + pageSearchResults);
-  if (pageSearchResults > 1) {
-    pageSearchResults -= 1;
+  if (movieIndexPerPage > 0) {
+    movieIndexPerPage -= 1;
   }
-  console.log("end: " + pageSearchResults);
   searchMovie();
 };
 
