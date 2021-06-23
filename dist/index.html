@@ -50,32 +50,32 @@
         src="https://source.unsplash.com/270x400/?movies"
         alt="movie screen"
         class="details__img"
+        id="details__img"
       />
       <!-- Rating Area -->
       <div class="details__rating">
-        <h3 class="details__rating-label">Rating</h3>
-        <div class="details__star">🌟🌟🌟🌟🌟</div>
+        <h3 class="details__rating-label">Rating:</h3>
+        <p class="details__rating--number" id="details__rating--number">X</p>
+        <p class="details__rating-10">/10</p>
       </div>
       <!-- Movie Summary -->
       <div class="details__summary">
-        <strong>Summary: </strong>Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Sequi nostrum totam ad excepturi atque quis cum
-        maiores ullam velit minus corporis soluta, ea eum quam amet quo animi
-        cupiditate sint fugit harum commodi culpa ut mollitia perspiciatis? Ad
-        dolorum enim aperiam earum maiores. Doloremque tempore cupiditate quo
-        provident numquam esse iste, perferendis molestias cum hic odio vel
-        magni dolore quaerat.
+        <p class="details__summary--label"><strong>Summary: </strong></p>
+        <p class="details__summary--body" id="details__summary--body">
+          ipsum dolor sit amet, consectetur adipisicing elit. Sequi nostrum
+          totam ad excepturi atque quis cum maiores ullam velit minus corporis
+          soluta, ea eum quam amet quo animi cupiditate sint fugit harum commodi
+          culpa ut mollitia perspiciatis? Ad dolorum enim aperiam earum maiores.
+          Doloremque tempore cupiditate quo provident numquam esse iste,
+          perferendis molestias cum hic odio vel magni dolore quaerat.
+        </p>
       </div>
       <!-- Movie People -->
       <ul class="details__list">
-        <li class="details__director">
-          <strong>Director: </strong>Wes Anderson
-        </li>
-        <li class="details__writers">
-          <strong>Writers: </strong>Wes Anderson, Roman Coppola
-        </li>
+        <li class="details__director"><strong>Director: </strong>Lorem</li>
+        <li class="details__writers"><strong>Writers: </strong>Lorem, Ipsum</li>
         <li class="details__stars">
-          <strong>Stars: </strong>Jared Gilman, Kara Hayward, Bruce Willis
+          <strong>Stars: </strong>Lorem, Ipsum, Dolor
         </li>
       </ul>
     </section>
@@ -83,10 +83,10 @@
     <!-- Navigation Footer -->
     <section class="navigation">
       <!-- Navigation Buttons -->
-      <button class="left">◀️</button>
-      <button class="right">▶️</button>
+      <button class="navigation__previous" id="navigation__previous">◀️</button>
+      <button class="navigation__next" id="navigation__next">▶️</button>
       <!-- Navigation Form -->
-      <form class="navigation__form">
+      <form class="navigation__form" onsubmit="return false;">
         <!-- Movie Year -->
         <input type="number" name="year" id="year" min="1900" required />
         <!-- Movie Genre -->

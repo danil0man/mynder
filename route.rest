@@ -34,4 +34,15 @@ GET http://localhost:5001/api/discover/2020/12/1
 
 ###
 
-GET https://api.themoviedb.org/3/account?ad65f3f346cc7869630deac544b0f1f7
+GET https://api.themoviedb.org/3/account?api_key=ad65f3f346cc7869630deac544b0f1f7
+
+###
+
+// "secure_base_url", "poster_sizes" - 404 error
+GET http://localhost:5001/api/configuration
+
+###
+
+// hardcoded, not running through server
+GET https://api.themoviedb.org/3/configuration?api_key=ad65f3f346cc7869630deac544b0f1f7
+
