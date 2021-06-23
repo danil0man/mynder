@@ -27,8 +27,9 @@ const searchMovie = (event) => {
         jsonResponse.data.results[movieIndexPerPage].vote_average;
       document.getElementById("details__summary--body").innerHTML =
         jsonResponse.data.results[movieIndexPerPage].overview;
-      // get proper url for movie poster and insert below.
-      // document.getElementById("details__img").src = ??? ;
+      document.getElementById(
+        "details__img"
+      ).src = `https://image.tmdb.org/t/p/w500${jsonResponse.data.results[movieIndexPerPage].poster_path}`;
     });
 };
 
