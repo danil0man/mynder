@@ -5,9 +5,8 @@
   display: grid;
   height: 50px;
   grid-template:
-    "previous year submit next" 1fr
-    "previous genre submit next" 1fr
-    / 1fr 2fr 2fr 1fr;
+    "previous form next" 1fr
+    / 1fr 4fr 1fr;
   grid-row-gap: 0.5rem;
   grid-column-gap: 1rem;
   flex-shrink: 0;
@@ -24,22 +23,34 @@
     color: black;
     border: none;
   }
-  &__year {
-    grid-area: year;
-    border: none;
-    font-size: 1.25rem;
-  }
-  &__genre {
-    grid-area: genre;
-    border: none;
-    font-size: 1.25rem;
-  }
-  &__submit {
-    grid-area: submit;
-    font-size: 2rem;
-    font-weight: bold;
-    color: black;
-    border: none;
-    border-radius: 0.7rem;
+  &__form {
+    display: grid;
+    grid-template:
+      "genre submit" 1fr
+      "year submit" 1fr
+      / 1fr 1fr;
+    grid-row-gap: 0.5rem;
+    grid-column-gap: 1rem;
+    grid-column-gap: 1rem;
+
+    &--year {
+      grid-area: year;
+      border: none;
+      font-size: 1.25rem;
+      padding-left: 0.5rem;
+    }
+    &--genre {
+      grid-area: genre;
+      border: none;
+      font-size: 1.25rem;
+    }
+    &--submit {
+      grid-area: submit;
+      font-size: 2rem;
+      font-weight: bold;
+      color: black;
+      border: none;
+      border-radius: 0.7rem;
+    }
   }
 }

@@ -119,33 +119,34 @@
           />
         </svg>
       </button>
+      <!-- Search Form -->
+      <form class="navigation__form" onsubmit="return false;">
+        <!-- Movie Year -->
+        <input
+          class="navigation__form--year"
+          type="number"
+          name="year"
+          id="year"
+          min="1900"
+          required
+        />
 
-      <!-- Movie Year -->
-      <input
-        class="navigation__year"
-        type="number"
-        name="year"
-        id="year"
-        min="1900"
-        required
-      />
-      <!-- <form class="navigation__form" onsubmit="return false;"> -->
-
-      <!-- Movie Genre -->
-      <select
-        class="navigation__genre"
-        name="genre"
-        id="genre"
-        required
-      ></select>
-      <!-- Submit Button -->
-      <input
-        type="submit"
-        value="Search"
-        id="navigation__submit"
-        class="navigation__submit"
-        required
-      />
+        <!-- Movie Genre -->
+        <select
+          class="navigation__form--genre"
+          name="genre"
+          id="genre"
+          required
+        ></select>
+        <!-- Submit Button -->
+        <input
+          type="submit"
+          value="Search"
+          id="navigation__submit"
+          class="navigation__form--submit"
+          required
+        />
+      </form>
     </section>
     <script src="js/script.js"></script>
   </body>
