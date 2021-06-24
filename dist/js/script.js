@@ -6,9 +6,8 @@ let previousMovieButton = document.querySelector("#navigation__previous");
 let pageSearchResults = 1;
 let movieIndexPerPage = 0;
 let searchResults;
-
-// thinking about "clean code" I think we want to break this up into
-// multiple functions if possible. "Each function should do just 1 thing"
+let numberOfResultsCurrentPage;
+let numberOfPages;
 
 const populateCard = (object) => {
   document.getElementById("current-movie-title").innerHTML =
@@ -20,6 +19,16 @@ const populateCard = (object) => {
   document.getElementById(
     "details__img"
   ).src = `https://image.tmdb.org/t/p/w500${object.data.results[movieIndexPerPage].poster_path}`;
+};
+
+const lengthFinder = (object) => {
+  var length = 0;
+  for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+      ++length;
+    }
+  }
+  return length;
 };
 
 const searchMovie = (event) => {
@@ -35,20 +44,24 @@ const searchMovie = (event) => {
       (networkError) => console.log(networkError.message)
     )
     .then((jsonResponse) => {
-      searchResults = jsonResponse;
+      movieIndexPerPage = 0;
       populateCard(jsonResponse);
+      searchResults = jsonResponse;
+      numberOfResultsCurrentPage = lengthFinder(jsonResponse.data.results);
+      numberOfPages = jsonResponse.data.total_pages;
     });
 };
 
 searchMovieButton.addEventListener("click", searchMovie);
 
 const nextMovie = () => {
-  if (movieIndexPerPage < 19) {
+  if (movieIndexPerPage < numberOfResultsCurrentPage - 1) {
     movieIndexPerPage += 1;
-  } // else {pageSearchResults += 1;
-  // searchMovie()
-  // }
-  populateCard(searchResults);
+    populateCard(searchResults);
+  } else if (pageSearchResults < numberOfPages) {
+    pageSearchResults += 1;
+    searchMovie();
+  }
 };
 
 nextMovieButton.addEventListener("click", nextMovie);
