@@ -1,24 +1,28 @@
+"use strict";
+
 let movieYear = document.querySelector("#year");
 let genreDropdown = document.querySelector("#genre");
 let searchMovieButton = document.querySelector("#navigation__submit");
 let nextMovieButton = document.querySelector("#navigation__next");
 let previousMovieButton = document.querySelector("#navigation__previous");
 let pageSearchResults = 1;
-let movieIndexPerPage = 0;
-let searchResults;
+let movieIndex = 0;
+// will hold all search results until page is reloaded.
+let searchResults = [];
 let numberOfResultsCurrentPage;
 let numberOfPages;
+let movieLanguageFilter = "en"; // use 'any' for no language filter.
 
 const populateMovieCard = (object) => {
   document.getElementById("current-movie-title").innerHTML =
-    object.data.results[movieIndexPerPage].original_title;
+    searchResults[movieIndex].original_title;
   document.getElementById("details__rating--number").innerHTML =
-    object.data.results[movieIndexPerPage].vote_average;
+    searchResults[movieIndex].vote_average;
   document.getElementById("details__summary--body").innerHTML =
-    object.data.results[movieIndexPerPage].overview;
+    searchResults[movieIndex].overview;
   document.getElementById(
     "details__img"
-  ).src = `https://image.tmdb.org/t/p/w500${object.data.results[movieIndexPerPage].poster_path}`;
+  ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
 };
 
 const findLengthOfObject = (object) => {
@@ -31,6 +35,16 @@ const findLengthOfObject = (object) => {
   return length;
 };
 
+const filterMovieDataLanguage = (object) => {
+  if (movieLanguageFilter !== "any") {
+    for (let i = 0; i < object.data.results.length; i++) {
+      if (object.data.results[i].original_language === movieLanguageFilter) {
+        searchResults.push(object.data.results[i]);
+      }
+    }
+  }
+};
+
 const searchMovie = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
@@ -41,29 +55,24 @@ const searchMovie = (event) => {
         }
         throw new Error("Request failed");
       },
-      (networkError) => consoe.log(networkError.message)
+      (networkError) => console.log(networkError.message)
     )
     .then((jsonResponse) => {
-      movieIndexPerPage = 0;
-      populateMovieCard(jsonResponse);
-      // Instead of just copying the jsonResponse, lets create a whole new object with a different
-      // data structure, and append each new page of movie data onto that object.
-      // this will allow us to filter out movies by language or rating, etc...
-      searchResults = jsonResponse;
-      numberOfResultsCurrentPage = findLengthOfObject(
-        jsonResponse.data.results
-      );
+      movieIndex = 0;
+      filterMovieDataLanguage(jsonResponse); //creates searchResults.
+      numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
+      populateMovieCard(searchResults);
     });
 };
 
 searchMovieButton.addEventListener("click", searchMovie);
 
 const nextMovie = () => {
-  if (movieIndexPerPage < numberOfResultsCurrentPage - 1) {
-    movieIndexPerPage += 1;
+  if (movieIndex < searchResults.length - 1) {
+    movieIndex += 1;
     populateMovieCard(searchResults);
-  } else if (pageSearchResults < numberOfPages) {
+  } else if (movieIndex === searchResults.length - 1) {
     pageSearchResults += 1;
     searchMovie();
   }
@@ -72,8 +81,8 @@ const nextMovie = () => {
 nextMovieButton.addEventListener("click", nextMovie);
 
 const previousMovie = () => {
-  if (movieIndexPerPage > 0) {
-    movieIndexPerPage -= 1;
+  if (movieIndex > 0) {
+    movieIndex -= 1;
   }
   populateMovieCard(searchResults);
 };
