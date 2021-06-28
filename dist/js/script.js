@@ -9,7 +9,7 @@ let searchResults;
 let numberOfResultsCurrentPage;
 let numberOfPages;
 
-const populateCard = (object) => {
+const populateMovieCard = (object) => {
   document.getElementById("current-movie-title").innerHTML =
     object.data.results[movieIndexPerPage].original_title;
   document.getElementById("details__rating--number").innerHTML =
@@ -21,7 +21,7 @@ const populateCard = (object) => {
   ).src = `https://image.tmdb.org/t/p/w500${object.data.results[movieIndexPerPage].poster_path}`;
 };
 
-const lengthFinder = (object) => {
+const findLengthOfObject = (object) => {
   var length = 0;
   for (var key in object) {
     if (object.hasOwnProperty(key)) {
@@ -41,13 +41,18 @@ const searchMovie = (event) => {
         }
         throw new Error("Request failed");
       },
-      (networkError) => console.log(networkError.message)
+      (networkError) => consoe.log(networkError.message)
     )
     .then((jsonResponse) => {
       movieIndexPerPage = 0;
-      populateCard(jsonResponse);
+      populateMovieCard(jsonResponse);
+      // Instead of just copying the jsonResponse, lets create a whole new object with a different
+      // data structure, and append each new page of movie data onto that object.
+      // this will allow us to filter out movies by language or rating, etc...
       searchResults = jsonResponse;
-      numberOfResultsCurrentPage = lengthFinder(jsonResponse.data.results);
+      numberOfResultsCurrentPage = findLengthOfObject(
+        jsonResponse.data.results
+      );
       numberOfPages = jsonResponse.data.total_pages;
     });
 };
@@ -57,7 +62,7 @@ searchMovieButton.addEventListener("click", searchMovie);
 const nextMovie = () => {
   if (movieIndexPerPage < numberOfResultsCurrentPage - 1) {
     movieIndexPerPage += 1;
-    populateCard(searchResults);
+    populateMovieCard(searchResults);
   } else if (pageSearchResults < numberOfPages) {
     pageSearchResults += 1;
     searchMovie();
@@ -70,7 +75,7 @@ const previousMovie = () => {
   if (movieIndexPerPage > 0) {
     movieIndexPerPage -= 1;
   }
-  populateCard(searchResults);
+  populateMovieCard(searchResults);
 };
 
 previousMovieButton.addEventListener("click", previousMovie);
