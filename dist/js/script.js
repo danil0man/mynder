@@ -2,7 +2,7 @@
 
 let movieYear = document.querySelector("#year");
 let genreDropdown = document.querySelector("#genre");
-let searchMovieButton = document.querySelector("#navigation__submit");
+let initialMovieRequestButton = document.querySelector("#navigation__submit");
 let nextMovieButton = document.querySelector("#navigation__next");
 let previousMovieButton = document.querySelector("#navigation__previous");
 let pageSearchResults = 1;
@@ -45,7 +45,7 @@ const filterMovieDataLanguage = (object) => {
   }
 };
 
-const searchMovie = (event) => {
+const initialMovieRequest = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
     .then(
@@ -58,6 +58,7 @@ const searchMovie = (event) => {
       (networkError) => console.log(networkError.message)
     )
     .then((jsonResponse) => {
+      searchResults = [];
       movieIndex = 0;
       filterMovieDataLanguage(jsonResponse); //creates searchResults.
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
@@ -66,28 +67,46 @@ const searchMovie = (event) => {
     });
 };
 
-searchMovieButton.addEventListener("click", searchMovie);
+const nextPageMovieRequest = (event) => {
+  const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
+  fetch(url)
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Request failed");
+      },
+      (networkError) => console.log(networkError.message)
+    )
+    .then((jsonResponse) => {
+      movieIndex++;
+      filterMovieDataLanguage(jsonResponse); //creates searchResults.
+      numberOfResultsCurrentPage = findLengthOfObject(searchResults);
+      numberOfPages = jsonResponse.data.total_pages;
+      populateMovieCard(searchResults);
+    });
+};
 
 const nextMovie = () => {
   if (movieIndex < searchResults.length - 1) {
-    movieIndex += 1;
+    movieIndex++;
     populateMovieCard(searchResults);
-  } else if (movieIndex === searchResults.length - 1) {
-    pageSearchResults += 1;
-    searchMovie();
+  } else if (
+    movieIndex === searchResults.length - 1 &&
+    pageSearchResults < numberOfPages
+  ) {
+    pageSearchResults++;
+    nextPageMovieRequest();
   }
 };
-
-nextMovieButton.addEventListener("click", nextMovie);
 
 const previousMovie = () => {
   if (movieIndex > 0) {
-    movieIndex -= 1;
+    movieIndex--;
   }
   populateMovieCard(searchResults);
 };
-
-previousMovieButton.addEventListener("click", previousMovie);
 
 window.addEventListener("load", (e) => {
   //on load, popluate/fetch genres
@@ -112,3 +131,9 @@ window.addEventListener("load", (e) => {
       });
     });
 });
+
+initialMovieRequestButton.addEventListener("click", initialMovieRequest);
+
+nextMovieButton.addEventListener("click", nextMovie);
+
+previousMovieButton.addEventListener("click", previousMovie);
