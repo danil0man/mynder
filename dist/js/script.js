@@ -7,7 +7,6 @@ let nextMovieButton = document.querySelector("#navigation__next");
 let previousMovieButton = document.querySelector("#navigation__previous");
 let pageSearchResults = 1;
 let movieIndex = 0;
-// will hold all search results until page is reloaded.
 let searchResults = [];
 let numberOfResultsCurrentPage;
 let numberOfPages;
