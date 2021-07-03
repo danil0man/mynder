@@ -5,6 +5,7 @@ let genreDropdown = document.querySelector("#genre");
 let initialMovieRequestButton = document.querySelector("#navigation__submit");
 let nextMovieButton = document.querySelector("#navigation__next");
 let previousMovieButton = document.querySelector("#navigation__previous");
+let movieId = 0
 let pageSearchResults = 1;
 let movieIndex = 0;
 let searchResults = [];
@@ -63,6 +64,24 @@ const initialMovieRequest = (event) => {
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
       populateMovieCard(searchResults);
+    });
+};
+
+// FRAMEWORK - get credits for director, actors
+const movieCredits = (event) => {
+  const url = `http://localhost:5001/api/movies/${movieId}/credits`;
+  fetch(url)
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Request failed");
+      },
+      (networkError) => console.log(networkError.message)
+    )
+    .then((jsonResponse) => {
+     // do some stuff
     });
 };
 

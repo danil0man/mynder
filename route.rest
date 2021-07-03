@@ -46,3 +46,7 @@ GET http://localhost:5001/api/configuration
 // hardcoded, not running through server
 GET https://api.themoviedb.org/3/configuration?api_key=ad65f3f346cc7869630deac544b0f1f7
 
+###
+
+// credits - all directors, actors, and other crew
+GET http://localhost:5001/api/movies/384018/credits

@@ -56,6 +56,26 @@ moviesRouter.get('/', async (req, res, next) => {
         res.status(500).json({ message: err });
     }
   });
+
+  moviesRouter.get('/:movieId/credits', async (req, res, next) => {
+    try {
+      const args = {
+        pathParameters: {
+          movie_id: req.params.movieId,
+        },
+      };
+      const movie = await mdb.movie.getCredits(args);
+      res.status(200).send(movie);
+      /*
+        {
+          data: Object. Parsed json data of response
+          headers: Object. Headers of response
+        }
+      */
+    } catch (err) {
+        res.status(500).json({ message: err });
+    }
+  });
   
 //   //retrive list of movie genere codes
 //   moviesRouter.get('/', async (req, res, next) => {
