@@ -6,15 +6,11 @@ let topRatedURL = 'movie/top_rated';
 let searchResults = [];
 let index = 0;
 
-
 let buildSearchURL = (searchQuery) => {
     
     return encodeURI(`${baseURL}${searchURL}movie?api_key=${apiKey}&query=${searchQuery}`);
    
 } ;
-//console.log(buildSearchURL('the room'));
-
-// https://api.themoviedb.org/3/search/movie?api_key=ad65f3f346cc7869630deac544b0f1f7&query=the room
 
 let getMoviesBySearchTerm = (searchTerm) => {
     var xhttp = new XMLHttpRequest();
@@ -33,7 +29,6 @@ let getMoviesBySearchTerm = (searchTerm) => {
     xhttp.send();
 };
 
-// buildSearchURL('the rock');
 getMoviesBySearchTerm('the rock');
 
 let goNext = () => {
@@ -58,4 +53,4 @@ let displayNoResultsFound = () => {
     let movieTitle = document.getElementById('movieTitle');
     movieTitle.innerHTML = 'No results found.'; 
 }
-// let getMoviesByDetails()
+
