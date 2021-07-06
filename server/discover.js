@@ -7,7 +7,7 @@ module.exports = discoverRouter;
 
   //retrive list of movies by year and genre codes
 discoverRouter.get('/:year/:genre/:page', async (req, res, next) => {
-    const {year, genre, page, with_cast} = req.params
+    const {year, genre, page} = req.params
     try {
         const args = {
         query: {
@@ -15,9 +15,8 @@ discoverRouter.get('/:year/:genre/:page', async (req, res, next) => {
             with_genres: genre,
             page: page,
             region: "US",
-            language: "en-US",
-            with_cast: with_cast
-
+            language: "en-US"
+        
             // query string, i.e. session_id
             // NOTE: api_key and language will be added to query by default, don't need specify these values
             },
