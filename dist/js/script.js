@@ -5,7 +5,6 @@ let genreDropdown = document.querySelector("#genre");
 let initialMovieRequestButton = document.querySelector("#navigation__submit");
 let nextMovieButton = document.querySelector("#navigation__next");
 let previousMovieButton = document.querySelector("#navigation__previous");
-let movieId = 0
 let pageSearchResults = 1;
 let movieIndex = 0;
 let searchResults = [];
@@ -13,39 +12,31 @@ let numberOfResultsCurrentPage;
 let numberOfPages;
 let movieLanguageFilter = "en"; // use 'any' for no language filter.
 
-const populateMovieCard = (object) => {
-  document.getElementById("current-movie-title").innerHTML =
-    searchResults[movieIndex].original_title;
-  document.getElementById("details__rating--number").innerHTML =
-    searchResults[movieIndex].vote_average;
-  document.getElementById("details__summary--body").innerHTML =
-    searchResults[movieIndex].overview;
-  document.getElementById(
-    "details__img"
-  ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
-};
+window.addEventListener("load", (e) => {
+  const url = `http://localhost:5001/api/genres`;
+  fetch(url)
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Request failed");
+      },
+      (networkError) => console.log(networkError.message)
+    )
+    .then((jsonResponse) => {
+      jsonResponse.data.genres.forEach((genreItem) => {
+        const option = document.createElement("option");
+        option.text = genreItem.name;
+        option.value = genreItem.id;
+        genreDropdown.appendChild(option);
+      });
+    });
+});
 
-const findLengthOfObject = (object) => {
-  var length = 0;
-  for (var key in object) {
-    if (object.hasOwnProperty(key)) {
-      ++length;
-    }
-  }
-  return length;
-};
+initialMovieRequestButton.addEventListener("click", initialMovieRequest);
 
-const filterMovieDataLanguage = (object) => {
-  if (movieLanguageFilter !== "any") {
-    for (let i = 0; i < object.data.results.length; i++) {
-      if (object.data.results[i].original_language === movieLanguageFilter) {
-        searchResults.push(object.data.results[i]);
-      }
-    }
-  }
-};
-
-const initialMovieRequest = (event) => {
+const initialMovieRequest = () => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
     .then(
@@ -67,8 +58,27 @@ const initialMovieRequest = (event) => {
     });
 };
 
-// FRAMEWORK - get credits for director, actors
-const movieCredits = (event) => {
+const filterMovieDataLanguage = (object) => {
+  if (movieLanguageFilter !== "any") {
+    for (let i = 0; i < object.data.results.length; i++) {
+      if (object.data.results[i].original_language === movieLanguageFilter) {
+        searchResults.push(object.data.results[i]);
+      }
+    }
+  }
+  filterMovieCredits();
+};
+
+const filterMovieCredits = () => {
+  for (let i = 0; i < searchResults.length; i++) {
+    currentMovieCredits = movieCredits(searchResults[i].id);
+    searchResults[i].directors = filterDirectors(currentMovieCredits);
+    filterWriters();
+    filterActors();
+  }
+};
+
+const movieCredits = (movieId) => {
   const url = `http://localhost:5001/api/movies/${movieId}/credits`;
   fetch(url)
     .then(
@@ -81,9 +91,50 @@ const movieCredits = (event) => {
       (networkError) => console.log(networkError.message)
     )
     .then((jsonResponse) => {
-     // do some stuff
+      currentMovieCredits = jsonResponse.data;
+      return currentMovieCredits;
     });
 };
+
+const filterDirectors = (currentMovieCredits) => {
+  directors = [];
+  for (let i = 0; i < currentMovieCredits.crew.length; i++) {
+    if (currentMovieCredits.crew[i].job === "Director") {
+      directors.push(currentMovieCredits.crew[i].name);
+    }
+  }
+  return directors;
+};
+
+// const filterWriters = () => {}
+
+// const filterActors = () => {}
+
+const findLengthOfObject = (object) => {
+  var length = 0;
+  for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+      ++length;
+    }
+  }
+  return length;
+};
+
+const populateMovieCard = (object) => {
+  document.getElementById("current-movie-title").innerHTML =
+    searchResults[movieIndex].original_title;
+  document.getElementById("details__rating--number").innerHTML =
+    searchResults[movieIndex].vote_average;
+  document.getElementById("details__summary--body").innerHTML =
+    searchResults[movieIndex].overview;
+  document.getElementById(
+    "details__img"
+  ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
+};
+
+nextMovieButton.addEventListener("click", nextMovie);
+
+previousMovieButton.addEventListener("click", previousMovie);
 
 const nextPageMovieRequest = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
@@ -125,33 +176,3 @@ const previousMovie = () => {
   }
   populateMovieCard(searchResults);
 };
-
-window.addEventListener("load", (e) => {
-  //on load, popluate/fetch genres
-  const url = `http://localhost:5001/api/genres`;
-  fetch(url)
-    .then(
-      (response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Request failed");
-      },
-      (networkError) => console.log(networkError.message)
-    )
-    .then((jsonResponse) => {
-      // do something with data, list of genres
-      jsonResponse.data.genres.forEach((genreItem) => {
-        const option = document.createElement("option");
-        option.text = genreItem.name;
-        option.value = genreItem.id;
-        genreDropdown.appendChild(option);
-      });
-    });
-});
-
-initialMovieRequestButton.addEventListener("click", initialMovieRequest);
-
-nextMovieButton.addEventListener("click", nextMovie);
-
-previousMovieButton.addEventListener("click", previousMovie);
