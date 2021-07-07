@@ -86,6 +86,8 @@ const movieCredits = () => {
       )
       .then((jsonResponse) => {
         searchResults[i].directors = filterDirectors(jsonResponse.data);
+        searchResults[i].writers = filterWriters(jsonResponse.data);
+        // searchResults[i].actors = filterActors(jsonResponse.data);
       });
   }
 };
@@ -100,9 +102,15 @@ const filterDirectors = (currentMovieCredits) => {
   return directors;
 };
 
-// const filterWriters = () => {}
-
-// const filterActors = () => {}
+const filterWriters = (currentMovieCredits) => {
+  let writers = [];
+  for (let i = 0; i < currentMovieCredits.crew.length; i++) {
+    if (currentMovieCredits.crew[i].job === "Writer") {
+      writers.push(currentMovieCredits.crew[i].name);
+    }
+  }
+  return writers;
+};
 
 const findLengthOfObject = (object) => {
   var length = 0;
