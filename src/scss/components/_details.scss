@@ -16,13 +16,13 @@ $body-text-color: black;
   &__title {
     text-align: center;
     font-size: 2.4rem;
-    color: $title-text-color;
+    color: $title-text-colpor;
     margin: 0.3rem 0;
   }
 
   &__img {
     border-radius: 0.5rem;
-    width: 100%;
+    width: 80%;
     height: auto;
     flex-shrink: 2;
   }
