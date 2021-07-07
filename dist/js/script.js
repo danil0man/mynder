@@ -50,10 +50,14 @@ const initialMovieRequest = () => {
     .then((jsonResponse) => {
       searchResults = [];
       movieIndex = 0;
-      filterMovieLanguage(jsonResponse); // searchResults created here.
+      filterMovieLanguage(jsonResponse); // searchResults is created here.
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
-      movieCredits(); // searchResults added to here.
+      movieCredits(); // this function should add arrays for directors, writers,
+      // and stars to searchResults. It works when its run without
+      // adding results to the populateMovieCard() function.
+      // movieCredits() involves a promise, which is what I suspect is
+      // causing the error
       populateMovieCard(searchResults);
     });
 };
@@ -147,11 +151,17 @@ const populateMovieCard = (object) => {
   //
   document.getElementById("details__director--body").innerHTML =
     generateListString(searchResults[movieIndex].directors);
+  // here we run into trouble with populateMovieCard(). We are asking
+  // generateListString() to use the 'searchResults[index].directors' array which
+  // should have been created in movieCredits() back on line 56. But it isnt.
+  // Has the promise in movieCredits() not gone through yet by the time
+  // this is called??
 };
 
 const generateListString = (array) => {
   let string;
   if (array.length === 0) {
+    // array is undefined, see discussion on line 154.
     string = "Unknown";
   } else {
     for (let i = 0; i < array.length; i++) {
