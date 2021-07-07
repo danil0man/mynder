@@ -1,3 +1,32 @@
+searchResults: Array(17)
+  0:
+    adult: false
+    backdrop_path: "/kU7ZiyeUwcpTkYj3UcxSqGdZmxY.jpg"
+    directors: Array(1)
+      0: "Brandon Vietti"
+    genre_ids: Array(2)
+      0: 16
+      1: 28
+    id: 618353
+    original_language: "en"
+    original_title: "Batman: Death in the Family"
+    overview: "Tragedy strikes the Batman's life again when Robin Jason Todd tracks down his birth mother only to run afoul of the Joker. An adaptation of the 1988 comic book storyline of the same name."
+    popularity: 171.17
+    poster_path: "/k8Q9ulyRE8fkvZMkAM9LPYMKctb.jpg"
+    release_date: "2020-10-13"
+    stars: Array(3)
+      0: "Bruce Greenwood"
+      1: "Vincent Martella"
+      2: "John DiMaggio"
+
+    title: "Batman: Death in the Family"
+    video: false
+    vote_average: 7.4
+    vote_count: 239
+    writers: Array(1)
+      0: "Brandon Vietti"
+
+// Below is the raw json response data, above is our cleaned searchResults.
 data 
  {
   "page": 1,

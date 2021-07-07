@@ -50,10 +50,10 @@ const initialMovieRequest = () => {
     .then((jsonResponse) => {
       searchResults = [];
       movieIndex = 0;
-      filterMovieLanguage(jsonResponse);
+      filterMovieLanguage(jsonResponse); // searchResults created here.
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
-      movieCredits();
+      movieCredits(); // searchResults added to here.
       populateMovieCard(searchResults);
     });
 };
@@ -61,7 +61,7 @@ const initialMovieRequest = () => {
 initialMovieRequestButton.addEventListener("click", initialMovieRequest);
 
 const filterMovieLanguage = (object) => {
-  // this actually won't work for "any" as is. I think searchResults would be empty.
+  // TO DO: this actually won't work for "any" as is. I think searchResults would be empty.
   if (movieLanguageFilter !== "any") {
     for (let i = 0; i < object.data.results.length; i++) {
       if (object.data.results[i].original_language === movieLanguageFilter) {
@@ -69,6 +69,16 @@ const filterMovieLanguage = (object) => {
       }
     }
   }
+};
+
+const findLengthOfObject = (object) => {
+  var length = 0;
+  for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+      ++length;
+    }
+  }
+  return length;
 };
 
 const movieCredits = () => {
@@ -124,16 +134,6 @@ const filterStars = (currentMovieCredits) => {
   return stars;
 };
 
-const findLengthOfObject = (object) => {
-  var length = 0;
-  for (var key in object) {
-    if (object.hasOwnProperty(key)) {
-      ++length;
-    }
-  }
-  return length;
-};
-
 const populateMovieCard = (object) => {
   document.getElementById("current-movie-title").innerHTML =
     searchResults[movieIndex].original_title;
@@ -144,7 +144,43 @@ const populateMovieCard = (object) => {
   document.getElementById(
     "details__img"
   ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
+  //
+  document.getElementById("details__director--body").innerHTML =
+    generateListString(searchResults[movieIndex].directors);
 };
+
+const generateListString = (array) => {
+  let string;
+  if (array.length === 0) {
+    string = "Unknown";
+  } else {
+    for (let i = 0; i < array.length; i++) {
+      if ((i = 0)) {
+        string = `${array[i]}`;
+      } else if (i < array.length - 1) {
+        string += `, ${array[i]}`;
+      } else if (i == array.length - 1) {
+        string += `, and ${array[i]}`;
+      }
+    }
+  }
+  return string;
+};
+
+const nextMovie = () => {
+  if (movieIndex < searchResults.length - 1) {
+    movieIndex++;
+    populateMovieCard(searchResults);
+  } else if (
+    movieIndex === searchResults.length - 1 &&
+    pageSearchResults < numberOfPages
+  ) {
+    pageSearchResults++;
+    nextPageMovieRequest();
+  }
+};
+
+nextMovieButton.addEventListener("click", nextMovie);
 
 const nextPageMovieRequest = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
@@ -167,21 +203,6 @@ const nextPageMovieRequest = (event) => {
       populateMovieCard(searchResults);
     });
 };
-
-const nextMovie = () => {
-  if (movieIndex < searchResults.length - 1) {
-    movieIndex++;
-    populateMovieCard(searchResults);
-  } else if (
-    movieIndex === searchResults.length - 1 &&
-    pageSearchResults < numberOfPages
-  ) {
-    pageSearchResults++;
-    nextPageMovieRequest();
-  }
-};
-
-nextMovieButton.addEventListener("click", nextMovie);
 
 const previousMovie = () => {
   if (movieIndex > 0) {
