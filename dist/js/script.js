@@ -11,7 +11,6 @@ let searchResults = [];
 let numberOfResultsCurrentPage;
 let numberOfPages;
 let movieLanguageFilter = "en"; // use 'any' for no language filter.
-let currentMovieCredits = [];
 
 window.addEventListener("load", (e) => {
   const url = `http://localhost:5001/api/genres`;
@@ -50,9 +49,10 @@ const initialMovieRequest = () => {
     .then((jsonResponse) => {
       searchResults = [];
       movieIndex = 0;
-      filterMovieLanguage(jsonResponse);
+      filterMovieLanguage(jsonResponse); // creates searchResults
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
+      movieCredits(); // adds credits to searchResults
       populateMovieCard(searchResults);
     });
 };
@@ -68,34 +68,26 @@ const filterMovieLanguage = (object) => {
       }
     }
   }
-  filterMovieCredits();
 };
 
-const filterMovieCredits = () => {
-  for (let i = 0; i < searchResults.length; i++) {
-    movieCredits(searchResults[i].id);
-    searchResults[i].directors = filterDirectors(currentMovieCredits);
-    //filterWriters();
-    //filterActors();
+const movieCredits = () => {
+  for (let i = movieIndex; i < searchResults.length; i++) {
+    let movieId = searchResults[i].id;
+    const url = `http://localhost:5001/api/movies/${movieId}/credits`;
+    fetch(url)
+      .then(
+        (response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Request failed");
+        },
+        (networkError) => console.log(networkError.message)
+      )
+      .then((jsonResponse) => {
+        searchResults[i].directors = filterDirectors(jsonResponse.data);
+      });
   }
-};
-
-const movieCredits = (movieId) => {
-  const url = `http://localhost:5001/api/movies/${movieId}/credits`;
-  fetch(url)
-    .then(
-      (response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Request failed");
-      },
-      (networkError) => console.log(networkError.message)
-    )
-    .then((jsonResponse) => {
-      currentMovieCredits = jsonResponse.data;
-      console.log(currentMovieCredits);
-    });
 };
 
 const filterDirectors = (currentMovieCredits) => {
@@ -148,7 +140,7 @@ const nextPageMovieRequest = (event) => {
     )
     .then((jsonResponse) => {
       movieIndex++;
-      filterMovieLanguage(jsonResponse); //creates searchResults.
+      filterMovieLanguage(jsonResponse);
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
       populateMovieCard(searchResults);
