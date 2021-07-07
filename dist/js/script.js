@@ -11,6 +11,7 @@ let searchResults = [];
 let numberOfResultsCurrentPage;
 let numberOfPages;
 let movieLanguageFilter = "en"; // use 'any' for no language filter.
+let currentMovieCredits = [];
 
 window.addEventListener("load", (e) => {
   const url = `http://localhost:5001/api/genres`;
@@ -34,8 +35,6 @@ window.addEventListener("load", (e) => {
     });
 });
 
-initialMovieRequestButton.addEventListener("click", initialMovieRequest);
-
 const initialMovieRequest = () => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
@@ -51,14 +50,17 @@ const initialMovieRequest = () => {
     .then((jsonResponse) => {
       searchResults = [];
       movieIndex = 0;
-      filterMovieDataLanguage(jsonResponse); //creates searchResults.
+      filterMovieLanguage(jsonResponse);
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
       populateMovieCard(searchResults);
     });
 };
 
-const filterMovieDataLanguage = (object) => {
+initialMovieRequestButton.addEventListener("click", initialMovieRequest);
+
+const filterMovieLanguage = (object) => {
+  // this actually won't work for "any" as is. I think searchResults would be empty.
   if (movieLanguageFilter !== "any") {
     for (let i = 0; i < object.data.results.length; i++) {
       if (object.data.results[i].original_language === movieLanguageFilter) {
@@ -71,10 +73,10 @@ const filterMovieDataLanguage = (object) => {
 
 const filterMovieCredits = () => {
   for (let i = 0; i < searchResults.length; i++) {
-    currentMovieCredits = movieCredits(searchResults[i].id);
+    movieCredits(searchResults[i].id);
     searchResults[i].directors = filterDirectors(currentMovieCredits);
-    filterWriters();
-    filterActors();
+    //filterWriters();
+    //filterActors();
   }
 };
 
@@ -92,12 +94,12 @@ const movieCredits = (movieId) => {
     )
     .then((jsonResponse) => {
       currentMovieCredits = jsonResponse.data;
-      return currentMovieCredits;
+      console.log(currentMovieCredits);
     });
 };
 
 const filterDirectors = (currentMovieCredits) => {
-  directors = [];
+  let directors = [];
   for (let i = 0; i < currentMovieCredits.crew.length; i++) {
     if (currentMovieCredits.crew[i].job === "Director") {
       directors.push(currentMovieCredits.crew[i].name);
@@ -132,10 +134,6 @@ const populateMovieCard = (object) => {
   ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
 };
 
-nextMovieButton.addEventListener("click", nextMovie);
-
-previousMovieButton.addEventListener("click", previousMovie);
-
 const nextPageMovieRequest = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
@@ -150,7 +148,7 @@ const nextPageMovieRequest = (event) => {
     )
     .then((jsonResponse) => {
       movieIndex++;
-      filterMovieDataLanguage(jsonResponse); //creates searchResults.
+      filterMovieLanguage(jsonResponse); //creates searchResults.
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
       populateMovieCard(searchResults);
@@ -170,9 +168,13 @@ const nextMovie = () => {
   }
 };
 
+nextMovieButton.addEventListener("click", nextMovie);
+
 const previousMovie = () => {
   if (movieIndex > 0) {
     movieIndex--;
   }
   populateMovieCard(searchResults);
 };
+
+previousMovieButton.addEventListener("click", previousMovie);
