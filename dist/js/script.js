@@ -50,10 +50,10 @@ const initialMovieRequest = () => {
     .then((jsonResponse) => {
       searchResults = [];
       movieIndex = 0;
-      filterMovieLanguage(jsonResponse); // creates searchResults
+      filterMovieLanguage(jsonResponse);
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
-      movieCredits(); // adds credits to searchResults
+      movieCredits();
       populateMovieCard(searchResults);
     });
 };
@@ -163,6 +163,7 @@ const nextPageMovieRequest = (event) => {
       filterMovieLanguage(jsonResponse);
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
+      movieCredits();
       populateMovieCard(searchResults);
     });
 };
