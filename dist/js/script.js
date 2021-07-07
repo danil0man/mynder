@@ -11,6 +11,7 @@ let searchResults = [];
 let numberOfResultsCurrentPage;
 let numberOfPages;
 let movieLanguageFilter = "en"; // use 'any' for no language filter.
+let numberOfStars = 3;
 
 window.addEventListener("load", (e) => {
   const url = `http://localhost:5001/api/genres`;
@@ -87,7 +88,7 @@ const movieCredits = () => {
       .then((jsonResponse) => {
         searchResults[i].directors = filterDirectors(jsonResponse.data);
         searchResults[i].writers = filterWriters(jsonResponse.data);
-        // searchResults[i].actors = filterActors(jsonResponse.data);
+        searchResults[i].stars = filterStars(jsonResponse.data);
       });
   }
 };
@@ -105,11 +106,22 @@ const filterDirectors = (currentMovieCredits) => {
 const filterWriters = (currentMovieCredits) => {
   let writers = [];
   for (let i = 0; i < currentMovieCredits.crew.length; i++) {
-    if (currentMovieCredits.crew[i].job === "Writer") {
+    if (
+      currentMovieCredits.crew[i].job === "Writer" ||
+      currentMovieCredits.crew[i].job === "Screenplay"
+    ) {
       writers.push(currentMovieCredits.crew[i].name);
     }
   }
   return writers;
+};
+
+const filterStars = (currentMovieCredits) => {
+  let stars = [];
+  for (let i = 0; i < numberOfStars; i++) {
+    stars.push(currentMovieCredits.cast[i].name);
+  }
+  return stars;
 };
 
 const findLengthOfObject = (object) => {
