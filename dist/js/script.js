@@ -53,11 +53,9 @@ const initialMovieRequest = () => {
       filterMovieLanguage(jsonResponse); // searchResults is created here.
       numberOfResultsCurrentPage = findLengthOfObject(searchResults);
       numberOfPages = jsonResponse.data.total_pages;
-      movieCredits(); // this function should add arrays for directors, writers,
-      // and stars to searchResults. It works when its run without
-      // adding results to the populateMovieCard() function.
-      // movieCredits() involves a promise, which is what I suspect is
-      // causing the error
+      return movieCredits();
+    })
+    .then(() => {
       populateMovieCard(searchResults);
     });
 };
@@ -86,10 +84,11 @@ const findLengthOfObject = (object) => {
 };
 
 const movieCredits = () => {
+  let promiseArray = [];
   for (let i = movieIndex; i < searchResults.length; i++) {
     let movieId = searchResults[i].id;
     const url = `http://localhost:5001/api/movies/${movieId}/credits`;
-    fetch(url)
+    const promiseVariable = fetch(url)
       .then(
         (response) => {
           if (response.ok) {
@@ -104,7 +103,9 @@ const movieCredits = () => {
         searchResults[i].writers = filterWriters(jsonResponse.data);
         searchResults[i].stars = filterStars(jsonResponse.data);
       });
+    promiseArray.push(promiseVariable);
   }
+  return Promise.all(promiseArray);
 };
 
 const filterDirectors = (currentMovieCredits) => {
@@ -151,21 +152,15 @@ const populateMovieCard = (object) => {
   //
   document.getElementById("details__director--body").innerHTML =
     generateListString(searchResults[movieIndex].directors);
-  // here we run into trouble with populateMovieCard(). We are asking
-  // generateListString() to use the 'searchResults[index].directors' array which
-  // should have been created in movieCredits() back on line 56. But it isnt.
-  // Has the promise in movieCredits() not gone through yet by the time
-  // this is called??
 };
 
 const generateListString = (array) => {
   let string;
   if (array.length === 0) {
-    // array is undefined, see discussion on line 154.
     string = "Unknown";
   } else {
     for (let i = 0; i < array.length; i++) {
-      if ((i = 0)) {
+      if (i === 0) {
         string = `${array[i]}`;
       } else if (i < array.length - 1) {
         string += `, ${array[i]}`;
