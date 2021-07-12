@@ -45,6 +45,7 @@ $body-text-color: black;
   &__summary {
     border: 1px solid black;
     padding: 0.25rem 1rem;
+    margin-top: 1rem;
     font-size: 1.3rem;
     line-height: 1.5;
     width: 100%;
@@ -57,7 +58,6 @@ $body-text-color: black;
   &__credits {
     border: 1px solid black;
     padding: 0.25rem 1rem;
-    margin-top: 1rem;
     width: 100%;
     height: auto;
     display: flex;

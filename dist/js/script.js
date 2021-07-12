@@ -150,8 +150,12 @@ const populateMovieCard = (object) => {
     "details__img"
   ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
   //
-  document.getElementById("details__director--body").innerHTML =
+  document.getElementById("details__directors--body").innerHTML =
     generateListString(searchResults[movieIndex].directors);
+  document.getElementById("details__writers--body").innerHTML =
+    generateListString(searchResults[movieIndex].writers);
+  document.getElementById("details__stars--body").innerHTML =
+    generateListString(searchResults[movieIndex].stars);
 };
 
 const generateListString = (array) => {
