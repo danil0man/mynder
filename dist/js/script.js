@@ -140,21 +140,25 @@ const filterStars = (currentMovieCredits) => {
 };
 
 const populateMovieCard = (object) => {
+  let space = "      ";
   document.getElementById("current-movie-title").innerHTML =
     searchResults[movieIndex].original_title;
   document.getElementById("details__rating--number").innerHTML =
     searchResults[movieIndex].vote_average;
   document.getElementById("details__summary--body").innerHTML =
-    searchResults[movieIndex].overview;
+    "<strong>Summary: </strong>" + searchResults[movieIndex].overview;
   document.getElementById(
     "details__img"
   ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
   //
   document.getElementById("details__directors--body").innerHTML =
+    "<strong>Directed By:</strong>" +
     generateListString(searchResults[movieIndex].directors);
   document.getElementById("details__writers--body").innerHTML =
+    "<strong>Written By:</strong>" +
     generateListString(searchResults[movieIndex].writers);
   document.getElementById("details__stars--body").innerHTML =
+    "<strong>Starring:</strong>" +
     generateListString(searchResults[movieIndex].stars);
 };
 
