@@ -1,15 +1,15 @@
 .navigation {
-  margin-top: 1rem;
+  // margin-top: 1rem;
   padding: 0.5rem;
-  background-color: black;
-  display: grid;
   height: 50px;
+  background-color: black;
+  grid-area: navigation;
+  display: grid;
   grid-template:
     "previous form next" 1fr
     / 1fr 4fr 1fr;
   grid-row-gap: 0.5rem;
   grid-column-gap: 1rem;
-  flex-shrink: 0;
 
   &__previous {
     grid-area: previous;
