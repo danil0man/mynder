@@ -2,14 +2,23 @@ $title-text-color: black;
 $body-text-color: black;
 
 .details {
-  margin: 0 auto;
   width: 320px;
   height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 400px) 1fr;
+  grid-template-rows:
+    fit-content(3rem) fit-content(40%) fit-content(2rem)
+    fit-content(20%) fit-content(30%);
+  grid-template-areas:
+    "left-pad title right-pad"
+    "left-pad image right-pad"
+    "left-pad rating right-pad"
+    "left-pad credits right-pad"
+    "left-pad summary right-pad";
+  align-content: center;
   align-items: center;
-  flex: 1;
+  justify-content: center;
+  justify-items: center;
   overflow: auto;
 
   &__title {
@@ -17,6 +26,7 @@ $body-text-color: black;
     font-size: 2.4rem;
     color: $title-text-color;
     margin: 0.3rem 0;
+    grid-area: title;
   }
 
   &__img {
@@ -24,12 +34,14 @@ $body-text-color: black;
     flex-shrink: 1;
     max-width: 85%;
     height: auto;
+    grid-area: image;
   }
 
   &__rating {
     margin: 0.5rem 0;
     font-size: 1.6rem;
     width: 100%;
+    grid-area: rating;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -45,6 +57,7 @@ $body-text-color: black;
     border: 1px solid black;
     padding: 0.25rem 1rem;
     width: 100%;
+    grid-area: credits;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -63,6 +76,7 @@ $body-text-color: black;
     border: 1px solid black;
     padding: 0.25rem 1rem;
     margin-top: 1rem;
+    grid-area: summary;
     font-size: 1.3rem;
     line-height: 1.5;
     width: 100%;
