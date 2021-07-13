@@ -3,10 +3,11 @@ $header-background-color: black;
 
 .header {
   background-color: $header-background-color;
+  grid-area: header;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
+  height: $header-height;
   font-weight: 900;
   flex-shrink: 0;
 }
