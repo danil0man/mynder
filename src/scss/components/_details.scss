@@ -33,7 +33,7 @@ $body-text-color: black;
 
   &__img {
     border-radius: 0.5rem;
-    max-width: 90%;
+    max-width: 100%;
     height: auto;
     grid-area: image;
   }
@@ -56,7 +56,7 @@ $body-text-color: black;
   }
   &__credits {
     border: 1px solid black;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 0.75rem;
     width: 100%;
     grid-area: credits;
     display: flex;
@@ -65,9 +65,9 @@ $body-text-color: black;
     font-size: 1.3rem;
     line-height: 1.5;
     overflow: scroll;
-    &--role {
-      display: flex;
-      flex-direction: row;
+    &--hanging {
+      text-indent: -1rem;
+      padding-left: 1rem;
     }
     &--label {
       padding-right: 0.5rem;
@@ -75,7 +75,7 @@ $body-text-color: black;
   }
   &__summary {
     border: 1px solid black;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 0.75rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     grid-area: summary;
