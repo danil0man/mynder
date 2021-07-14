@@ -1,11 +1,14 @@
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 100vh;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+#grid-container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template:
+    "header"
+    "details"
+    "navigation";
 }

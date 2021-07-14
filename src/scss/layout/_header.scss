@@ -3,12 +3,12 @@ $header-background-color: black;
 
 .header {
   background-color: $header-background-color;
+  grid-area: header;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   font-weight: 900;
-  flex-shrink: 0;
 }
 
 .logo {
