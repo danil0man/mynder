@@ -1,5 +1,6 @@
-// @media (max-width: 500px) {
-//   .details {
-//     max-width: 70%;
-//   }
-// }
+// for short screens
+@media (max-height: 700px) {
+  .details__img {
+    max-width: 80%;
+  }
+}
