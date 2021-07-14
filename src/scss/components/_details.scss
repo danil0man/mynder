@@ -11,7 +11,6 @@ $body-text-color: black;
   max-width: 400px;
   margin: auto;
   height: auto;
-  // grid-area: details;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: auto 1fr auto auto auto;
@@ -23,7 +22,6 @@ $body-text-color: black;
     "summary";
   justify-items: center;
   align-items: center;
-  // overflow: auto;
 
   &__title {
     text-align: center;
@@ -35,7 +33,7 @@ $body-text-color: black;
 
   &__img {
     border-radius: 0.5rem;
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
     grid-area: image;
   }
