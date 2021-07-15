@@ -47,8 +47,6 @@
       <!-- Details of movie -->
       <div id="details-container">
         <section class="details">
-          <!-- Title of the Movie -->
-          <h2 class="details__title" id="current-movie-title">Movie Title</h2>
           <!-- Picture of the Movie -->
           <img
             src="https://source.unsplash.com/270x400/?movies"
@@ -56,41 +54,45 @@
             class="details__img"
             id="details__img"
           />
-          <!-- Rating Area -->
-          <div class="details__rating">
-            <h3 class="details__rating-label">Rating:</h3>
-            <p class="details__rating--number" id="details__rating--number">
-              X
-            </p>
-            <p class="details__rating-10">/10</p>
-          </div>
-          <!-- Movie Credits -->
-          <div class="details__credits">
-            <div class="details__director details__credits--hanging">
-              <p>
-                <strong>Directed by: </strong
-                ><span id="details__directors--body"></span>
+          <div id="details-text-container">
+            <!-- Title of the Movie -->
+            <h2 class="details__title" id="current-movie-title">Movie Title</h2>
+            <!-- Rating Area -->
+            <div class="details__rating">
+              <h3 class="details__rating-label">Rating:</h3>
+              <p class="details__rating--number" id="details__rating--number">
+                X
+              </p>
+              <p class="details__rating-10">/10</p>
+            </div>
+            <!-- Movie Credits -->
+            <div class="details__credits">
+              <div class="details__director details__credits--hanging">
+                <p>
+                  <strong>Directed by: </strong
+                  ><span id="details__directors--body"></span>
+                </p>
+              </div>
+              <div class="details__writers details__credits--hanging">
+                <p>
+                  <strong>Written by: </strong
+                  ><span id="details__writers--body"></span>
+                </p>
+              </div>
+              <div class="details__stars details__credits--hanging">
+                <p>
+                  <strong>Starring: </strong
+                  ><span id="details__stars--body"></span>
+                </p>
+              </div>
+            </div>
+            <!-- Movie Summary -->
+            <div class="details__summary">
+              <p class="details__summary--body">
+                <strong>Summary: </strong
+                ><span id="details__summary--body"></span>
               </p>
             </div>
-            <div class="details__writers details__credits--hanging">
-              <p>
-                <strong>Written by: </strong
-                ><span id="details__writers--body"></span>
-              </p>
-            </div>
-            <div class="details__stars details__credits--hanging">
-              <p>
-                <strong>Starring: </strong
-                ><span id="details__stars--body"></span>
-              </p>
-            </div>
-          </div>
-          <!-- Movie Summary -->
-          <div class="details__summary">
-            <p class="details__summary--body">
-              <strong>Summary: </strong
-              ><span id="details__summary--body"></span>
-            </p>
           </div>
         </section>
       </div>
