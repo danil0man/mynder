@@ -198,6 +198,12 @@ const nextMovie = () => {
 
 nextMovieButton.addEventListener("click", nextMovie);
 
+document.addEventListener("keydown", function (event) {
+  if (event.key === "n" && searchResults.length > 0) {
+    nextMovie();
+  }
+});
+
 const nextPageMovieRequest = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
@@ -228,3 +234,9 @@ const previousMovie = () => {
 };
 
 previousMovieButton.addEventListener("click", previousMovie);
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "p" && searchResults.length > 0) {
+    previousMovie();
+  }
+});
