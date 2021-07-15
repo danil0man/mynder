@@ -147,9 +147,12 @@ const populateMovieCard = (object) => {
   document.getElementById("details__summary--body").innerHTML =
     searchResults[movieIndex].overview;
   document.getElementById(
-    "details__img"
+    "details__img--desktop"
   ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
-  //
+  document.getElementById(
+    "details__img--mobile"
+  ).src = `https://image.tmdb.org/t/p/w500${searchResults[movieIndex].poster_path}`;
+
   document.getElementById("details__directors--body").innerHTML =
     generateListString(searchResults[movieIndex].directors);
   document.getElementById("details__writers--body").innerHTML =

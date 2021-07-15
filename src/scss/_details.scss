@@ -32,10 +32,20 @@ $body-text-color: black;
   }
 
   &__img {
-    border-radius: 0.5rem;
-    max-width: 100%;
-    height: auto;
-    grid-area: image;
+    &--desktop {
+      display: none;
+      border-radius: 0.5rem;
+      max-width: 100%;
+      height: auto;
+      grid-area: image;
+    }
+    &--mobile {
+      display: block;
+      border-radius: 0.5rem;
+      max-width: 100%;
+      height: auto;
+      grid-area: image;
+    }
   }
 
   &__rating {
