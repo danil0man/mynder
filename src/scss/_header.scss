@@ -1,9 +1,18 @@
 $header-color: white;
 $header-background-color: black;
 
-.header {
-  background-color: $header-background-color;
+#header-container {
   grid-area: header;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: black;
+}
+
+.header {
+  flex-basis: 800px;
+  background-color: $header-background-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
