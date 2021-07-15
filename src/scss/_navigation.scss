@@ -1,9 +1,18 @@
+#navigation-container {
+  grid-area: navigation;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 50px;
+  color: black;
+  background-color: black;
+}
+
 .navigation {
-  // margin-top: 1rem;
+  max-width: 350px;
   padding: 0.5rem;
   height: 50px;
   background-color: black;
-  grid-area: navigation;
   display: grid;
   grid-template:
     "previous form next" 1fr
@@ -47,6 +56,8 @@
     &--submit {
       grid-area: submit;
       font-size: 2rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
       font-weight: bold;
       color: black;
       border: none;

@@ -94,73 +94,75 @@
       </div>
 
       <!-- Navigation Footer -->
-      <section class="navigation">
-        <!-- Navigation Buttons -->
-        <button class="navigation__previous" id="navigation__previous">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="29.193"
-            height="29.193"
-            viewBox="0 0 29.193 29.193"
-          >
-            <path
-              id="Icon_ionic-ios-arrow-dropleft-circle"
-              data-name="Icon ionic-ios-arrow-dropleft-circle"
-              d="M17.472,3.375a14.1,14.1,0,1,0,14.1,14.1A14.095,14.095,0,0,0,17.472,3.375Zm2.941,19.593a1.313,1.313,0,0,1,0,1.85,1.292,1.292,0,0,1-.922.38,1.315,1.315,0,0,1-.928-.386L12.192,18.42a1.306,1.306,0,0,1,.041-1.8L18.7,10.132a1.308,1.308,0,0,1,1.85,1.85L15,17.472Z"
-              transform="translate(-2.875 -2.875)"
-              fill="#fff"
-              stroke="#fff"
-              stroke-width="1"
+      <div id="navigation-container">
+        <section class="navigation">
+          <!-- Navigation Buttons -->
+          <button class="navigation__previous" id="navigation__previous">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="29.193"
+              height="29.193"
+              viewBox="0 0 29.193 29.193"
+            >
+              <path
+                id="Icon_ionic-ios-arrow-dropleft-circle"
+                data-name="Icon ionic-ios-arrow-dropleft-circle"
+                d="M17.472,3.375a14.1,14.1,0,1,0,14.1,14.1A14.095,14.095,0,0,0,17.472,3.375Zm2.941,19.593a1.313,1.313,0,0,1,0,1.85,1.292,1.292,0,0,1-.922.38,1.315,1.315,0,0,1-.928-.386L12.192,18.42a1.306,1.306,0,0,1,.041-1.8L18.7,10.132a1.308,1.308,0,0,1,1.85,1.85L15,17.472Z"
+                transform="translate(-2.875 -2.875)"
+                fill="#fff"
+                stroke="#fff"
+                stroke-width="1"
+              />
+            </svg>
+          </button>
+          <button class="navigation__next" id="navigation__next">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="29.193"
+              height="29.193"
+              viewBox="0 0 29.193 29.193"
+            >
+              <path
+                id="Icon_ionic-ios-arrow-dropright-circle"
+                data-name="Icon ionic-ios-arrow-dropright-circle"
+                d="M3.375,17.472a14.1,14.1,0,1,0,14.1-14.1A14.095,14.095,0,0,0,3.375,17.472Zm16.57,0-1.292-1.28-4.258-4.217a1.308,1.308,0,0,1,1.85-1.85l6.465,6.486a1.307,1.307,0,0,1,.041,1.8L16.381,24.8a1.306,1.306,0,1,1-1.85-1.843Z"
+                transform="translate(-2.875 -2.875)"
+                fill="#fff"
+                stroke="#fff"
+                stroke-width="1"
+              />
+            </svg>
+          </button>
+          <!-- Search Form -->
+          <form class="navigation__form" onsubmit="return false;">
+            <!-- Movie Year -->
+            <input
+              class="navigation__form--year"
+              type="number"
+              name="year"
+              id="year"
+              min="1900"
+              required
             />
-          </svg>
-        </button>
-        <button class="navigation__next" id="navigation__next">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="29.193"
-            height="29.193"
-            viewBox="0 0 29.193 29.193"
-          >
-            <path
-              id="Icon_ionic-ios-arrow-dropright-circle"
-              data-name="Icon ionic-ios-arrow-dropright-circle"
-              d="M3.375,17.472a14.1,14.1,0,1,0,14.1-14.1A14.095,14.095,0,0,0,3.375,17.472Zm16.57,0-1.292-1.28-4.258-4.217a1.308,1.308,0,0,1,1.85-1.85l6.465,6.486a1.307,1.307,0,0,1,.041,1.8L16.381,24.8a1.306,1.306,0,1,1-1.85-1.843Z"
-              transform="translate(-2.875 -2.875)"
-              fill="#fff"
-              stroke="#fff"
-              stroke-width="1"
-            />
-          </svg>
-        </button>
-        <!-- Search Form -->
-        <form class="navigation__form" onsubmit="return false;">
-          <!-- Movie Year -->
-          <input
-            class="navigation__form--year"
-            type="number"
-            name="year"
-            id="year"
-            min="1900"
-            required
-          />
 
-          <!-- Movie Genre -->
-          <select
-            class="navigation__form--genre"
-            name="genre"
-            id="genre"
-            required
-          ></select>
-          <!-- Submit Button -->
-          <input
-            type="submit"
-            value="Search"
-            id="navigation__submit"
-            class="navigation__form--submit"
-            required
-          />
-        </form>
-      </section>
+            <!-- Movie Genre -->
+            <select
+              class="navigation__form--genre"
+              name="genre"
+              id="genre"
+              required
+            ></select>
+            <!-- Submit Button -->
+            <input
+              class="navigation__form--submit"
+              type="submit"
+              value="Search"
+              id="navigation__submit"
+              required
+            />
+          </form>
+        </section>
+      </div>
     </div>
     <script src="js/script.js"></script>
   </body>
