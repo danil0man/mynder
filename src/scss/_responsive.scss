@@ -1,13 +1,19 @@
 // for short screens
 @media (max-height: 700px) {
-  .details__img {
+  .details__img--mobile {
     max-width: 80%;
+    margin: auto;
+  }
+  .details__img--desktop {
+    max-width: 80%;
+    margin: auto;
   }
 }
 
-@media (min-width: 800px) {
+// tablets and desktop
+@media (min-width: 550px) {
   .details {
-    width: 750px;
+    width: 95%;
     max-width: 750px;
     margin: auto;
     height: auto;
@@ -16,6 +22,51 @@
     grid-template-rows: auto auto;
     grid-template-areas: "image details";
     align-items: start;
+    grid-column-gap: 12px;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 12px;
+    &__title {
+      margin-bottom: 16px;
+      font-size: 3rem;
+      text-align: center;
+      align-self: center;
+    }
+    &__img {
+      &--desktop {
+        display: block;
+      }
+      &--mobile {
+        display: none;
+      }
+    }
+    &__credits {
+      margin-top: 1.5rem;
+    }
+    &__summary {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  #details-text-container {
+    grid-area: details;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 549px) {
+  .details {
+    width: 95%;
+    max-width: 750px;
+    margin: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "image details";
+    align-items: center;
     grid-column-gap: 12px;
     border: 2px solid black;
     border-radius: 8px;
