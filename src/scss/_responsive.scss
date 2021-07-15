@@ -13,6 +13,7 @@
 // tablets and desktop
 @media (min-width: 550px) {
   .details {
+    display: none;
     width: 95%;
     max-width: 750px;
     margin: auto;
@@ -58,6 +59,7 @@
 
 @media (min-width: 450px) and (max-width: 549px) {
   .details {
+    display: none;
     width: 95%;
     max-width: 750px;
     margin: auto;

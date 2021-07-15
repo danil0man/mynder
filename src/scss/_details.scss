@@ -2,6 +2,7 @@ $title-text-color: black;
 $body-text-color: black;
 
 #details-container {
+  display: none;
   grid-area: details;
   overflow: auto;
 }

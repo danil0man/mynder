@@ -57,6 +57,10 @@ const initialMovieRequest = () => {
     })
     .then(() => {
       populateMovieCard(searchResults);
+    })
+    .then(() => {
+      document.getElementById("home-screen").style.display = "none";
+      document.getElementById("details-container").style.display = "block";
     });
 };
 
