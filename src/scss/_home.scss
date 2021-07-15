@@ -1,0 +1,19 @@
+.home-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+  &__title {
+    font-size: 5rem;
+    font-weight: bold;
+  }
+  &__body {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+  &__image {
+    max-width: 200px;
+  }
+}
