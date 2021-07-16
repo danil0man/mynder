@@ -13,13 +13,13 @@
 // tablets and desktop
 @media (min-width: 550px) {
   #grid-container {
-    grid-template-columns: 50px 1fr 50px;
+    grid-template-columns: minmax(0, 1fr) 30px 750px 30px minmax(0, 1fr);
     grid-template-rows: 40px 50px 1fr 50px;
     grid-template:
-      "header header header"
-      "navigation navigation navigation"
-      "previous details next"
-      "padding padding padding";
+      "header header header header header"
+      "navigation navigation navigation navigation navigation"
+      "padleft previous details next padright"
+      "padding padding padding padding padding";
     align-content: start;
     grid-row-gap: 16px;
   }
@@ -69,7 +69,7 @@
     display: none;
     width: 95%;
     max-width: 750px;
-    margin: auto;
+    margin: 0, auto;
     height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -107,6 +107,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 750px;
   }
 }
 

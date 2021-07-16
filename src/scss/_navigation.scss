@@ -84,7 +84,13 @@
 
 .previous__desktop {
   display: none;
+  border: none;
+  background-color: white;
+  justify-self: end;
 }
 .next__desktop {
   display: none;
+  border: none;
+  background-color: white;
+  justify-self: start;
 }
