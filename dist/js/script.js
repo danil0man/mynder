@@ -3,8 +3,12 @@
 let movieYear = document.querySelector("#year");
 let genreDropdown = document.querySelector("#genre");
 let initialMovieRequestButton = document.querySelector("#navigation__submit");
-let nextMovieButton = document.querySelector("#navigation__next");
-let previousMovieButton = document.querySelector("#navigation__previous");
+let nextMovieButtonMobile = document.querySelector("#navigation__next--mobile");
+let nextMovieButtonDesktop = document.querySelector("#next__desktop");
+let previousMovieButtonMobile = document.querySelector(
+  "#navigation__previous--mobile"
+);
+let previousMovieButtonDesktop = document.querySelector("#previous__desktop");
 let pageSearchResults = 1;
 let movieIndex = 0;
 let searchResults = [];
@@ -196,7 +200,8 @@ const nextMovie = () => {
   }
 };
 
-nextMovieButton.addEventListener("click", nextMovie);
+nextMovieButtonMobile.addEventListener("click", nextMovie);
+nextMovieButtonDesktop.addEventListener("click", nextMovie);
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "n" && searchResults.length > 0) {
@@ -233,7 +238,8 @@ const previousMovie = () => {
   populateMovieCard(searchResults);
 };
 
-previousMovieButton.addEventListener("click", previousMovie);
+previousMovieButtonMobile.addEventListener("click", previousMovie);
+previousMovieButtonDesktop.addEventListener("click", previousMovie);
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "p" && searchResults.length > 0) {
