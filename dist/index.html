@@ -1095,6 +1095,16 @@
           </button>
           <!-- Search Form -->
           <form class="navigation__form" onsubmit="return false;">
+            <!-- Movie Genre -->
+            <label class="navigation__form--genre-label" for="genre"
+              >Genre:</label
+            >
+            <select
+              class="navigation__form--genre"
+              name="genre"
+              id="genre"
+              required
+            ></select>
             <!-- Movie Year -->
             <label class="navigation__form--year-label" for="year">Year:</label>
             <input
@@ -1106,16 +1116,6 @@
               required
             />
 
-            <!-- Movie Genre -->
-            <label class="navigation__form--genre-label" for="genre"
-              >Genre:</label
-            >
-            <select
-              class="navigation__form--genre"
-              name="genre"
-              id="genre"
-              required
-            ></select>
             <!-- Submit Button -->
             <input
               class="navigation__form--submit"
