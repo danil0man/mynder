@@ -1,4 +1,4 @@
-// for short screens
+// short screens
 @media (max-height: 700px) {
   .details__img--mobile {
     max-width: 80%;
@@ -12,6 +12,36 @@
 
 // tablets and desktop
 @media (min-width: 550px) {
+  #grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 50px 1fr;
+    grid-template:
+      "header"
+      "navigation"
+      "details";
+    align-content: start;
+    grid-row-gap: 16px;
+  }
+  #navigation-container {
+    background-color: white;
+  }
+  // turn off mobile buttons
+  .navigation {
+    background-color: white;
+    &__previous--mobile {
+      display: none;
+    }
+    &__next--mobile {
+      display: none;
+    }
+  }
+  // turn on desktop buttons
+  .previous__desktop {
+    display: block;
+  }
+  .next__desktop {
+    display: block;
+  }
   .details {
     display: none;
     width: 95%;
