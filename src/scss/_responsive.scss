@@ -13,12 +13,13 @@
 // tablets and desktop
 @media (min-width: 550px) {
   #grid-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 40px 50px 1fr;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 40px 50px 1fr 50px;
     grid-template:
-      "header"
-      "navigation"
-      "details";
+      "header header header"
+      "navigation navigation navigation"
+      "previous details next"
+      "padding padding padding";
     align-content: start;
     grid-row-gap: 16px;
   }
@@ -28,19 +29,41 @@
   // turn off mobile buttons
   .navigation {
     background-color: white;
+    &__form {
+      &--genre-label {
+        color: black;
+      }
+      &--year-label {
+        color: black;
+      }
+      &--genre {
+        border: 1px solid black;
+      }
+      &--year {
+        border: 1px solid black;
+      }
+      &--submit {
+        background-color: lightgray;
+        color: black;
+        border: 1px solid black;
+      }
+    }
+
     &__previous--mobile {
-      display: none;
+      visibility: hidden;
     }
     &__next--mobile {
-      display: none;
+      visibility: hidden;
     }
   }
   // turn on desktop buttons
   .previous__desktop {
     display: block;
+    grid-area: previous;
   }
   .next__desktop {
     display: block;
+    grid-area: next;
   }
   .details {
     display: none;
@@ -88,6 +111,59 @@
 }
 
 @media (min-width: 450px) and (max-width: 549px) {
+  #grid-container {
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 40px 50px 1fr 50px;
+    grid-template:
+      "header header header"
+      "navigation navigation navigation"
+      "previous details next"
+      "padding padding padding";
+    align-content: start;
+    grid-row-gap: 16px;
+  }
+  #navigation-container {
+    background-color: white;
+  }
+  // turn off mobile buttons
+  .navigation {
+    background-color: white;
+    &__form {
+      &--genre-label {
+        color: black;
+      }
+      &--year-label {
+        color: black;
+      }
+      &--genre {
+        border: 1px solid black;
+      }
+      &--year {
+        border: 1px solid black;
+      }
+      &--submit {
+        background-color: lightgray;
+        color: black;
+        border: 1px solid black;
+      }
+    }
+
+    &__previous--mobile {
+      visibility: hidden;
+    }
+    &__next--mobile {
+      visibility: hidden;
+    }
+  }
+  // turn on desktop buttons
+  .previous__desktop {
+    display: block;
+    grid-area: previous;
+  }
+  .next__desktop {
+    display: block;
+    grid-area: next;
+  }
   .details {
     display: none;
     width: 95%;
