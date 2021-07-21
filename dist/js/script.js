@@ -203,12 +203,6 @@ const nextMovie = () => {
 nextMovieButtonMobile.addEventListener("click", nextMovie);
 nextMovieButtonDesktop.addEventListener("click", nextMovie);
 
-document.addEventListener("keydown", function (event) {
-  if (event.key === "n" && searchResults.length > 0) {
-    nextMovie();
-  }
-});
-
 const nextPageMovieRequest = (event) => {
   const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
@@ -242,7 +236,9 @@ previousMovieButtonMobile.addEventListener("click", previousMovie);
 previousMovieButtonDesktop.addEventListener("click", previousMovie);
 
 document.addEventListener("keydown", function (event) {
-  if (event.key === "p" && searchResults.length > 0) {
+  if (event.keyCode === 37 && searchResults.length > 0) {
     previousMovie();
+  } else if (event.keyCode === 39 && searchResults.length > 0) {
+    nextMovie();
   }
 });
