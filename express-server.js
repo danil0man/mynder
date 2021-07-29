@@ -7,13 +7,16 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+// Alex added to give the browser access to CSS and script.js
 app.use(express.static(__dirname + "/public"));
 const PORT = process.env.PORT || 5001;
 
 const apiRouter = require("./server/api");
 app.use("/api", apiRouter);
+
+// Alex added to make index.html open on app launch.
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/dist/index.html");
+  res.sendFile(__dirname + "/public/dist/index.html");
 });
 
 app.listen(PORT, () => {
