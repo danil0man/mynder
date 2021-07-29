@@ -1,7 +1,8 @@
 const express = require('express');
 const discoverRouter = express.Router();
 const MovieDB = require('node-themoviedb');
-const mdb = new MovieDB('ad65f3f346cc7869630deac544b0f1f7');
+const APIKEY = require('./apikey');
+const mdb = new MovieDB(APIKEY);
 
 module.exports = discoverRouter;
 
