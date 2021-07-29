@@ -1,83 +1,81 @@
-const express = require('express');
+const express = require("express");
 const moviesRouter = express.Router();
-const MovieDB = require('node-themoviedb');
-const APIKEY = require('./apikey');
+const MovieDB = require("node-themoviedb");
+const APIKEY = process.env.MOVIEDB_API_KEY;
 const mdb = new MovieDB(APIKEY);
-
 
 // could do const moviesRouter = require('express').Router();
 
 module.exports = moviesRouter;
 
-moviesRouter.get('/', async (req, res, next) => {
-    try{
-        res.status(200).json()
-
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
+moviesRouter.get("/", async (req, res, next) => {
+  try {
+    res.status(200).json();
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
-moviesRouter.get('/', async (req, res, next) => {
-    try {
-      const args = {
-        pathParameters: {
-            movie_id: 384018,
-        },
-      };
-      const movie = await mdb.movie.getDetails(args);
-      res.status(200).send(movie);
-      /*
+moviesRouter.get("/", async (req, res, next) => {
+  try {
+    const args = {
+      pathParameters: {
+        movie_id: 384018,
+      },
+    };
+    const movie = await mdb.movie.getDetails(args);
+    res.status(200).send(movie);
+    /*
         {
           data: Object. Parsed json data of response
           headers: Object. Headers of response
         }
       */
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-  });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
-  moviesRouter.get('/:movieId', async (req, res, next) => {
-    try {
-      const args = {
-        pathParameters: {
-          movie_id: req.params.movieId,
-        },
-      };
-      const movie = await mdb.movie.getDetails(args);
-      res.status(200).send(movie);
-      /*
+moviesRouter.get("/:movieId", async (req, res, next) => {
+  try {
+    const args = {
+      pathParameters: {
+        movie_id: req.params.movieId,
+      },
+    };
+    const movie = await mdb.movie.getDetails(args);
+    res.status(200).send(movie);
+    /*
         {
           data: Object. Parsed json data of response
           headers: Object. Headers of response
         }
       */
-    } catch (err) {
-        res.status(500).json({ message: err });
-    }
-  });
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
 
-  moviesRouter.get('/:movieId/credits', async (req, res, next) => {
-    try {
-      const args = {
-        pathParameters: {
-          movie_id: req.params.movieId,
-        },
-      };
-      const movie = await mdb.movie.getCredits(args);
-      res.status(200).send(movie);
-      /*
+moviesRouter.get("/:movieId/credits", async (req, res, next) => {
+  try {
+    const args = {
+      pathParameters: {
+        movie_id: req.params.movieId,
+      },
+    };
+    const movie = await mdb.movie.getCredits(args);
+    res.status(200).send(movie);
+    /*
         {
           data: Object. Parsed json data of response
           headers: Object. Headers of response
         }
       */
-    } catch (err) {
-        res.status(500).json({ message: err });
-    }
-  });
-  
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
+
 //   //retrive list of movie genere codes
 //   moviesRouter.get('/', async (req, res, next) => {
 //     try {
