@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5001;
 const apiRouter = require("./server/api");
 app.use("/api", apiRouter);
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "./dist/index.html");
+  res.sendFile(__dirname + "/dist/index.html");
 });
 
 app.listen(PORT, () => {
@@ -20,3 +20,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+p;
