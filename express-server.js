@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname));
 const PORT = process.env.PORT || 5001;
 
 const apiRouter = require("./server/api");
