@@ -16,7 +16,7 @@ app.use("/api", apiRouter);
 
 // Alex added to make index.html open on app launch.
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/public/dist/index.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.listen(PORT, () => {
