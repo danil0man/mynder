@@ -16,9 +16,10 @@ let numberOfResultsCurrentPage;
 let numberOfPages;
 let movieLanguageFilter = "en"; // use 'any' for no language filter.
 let numberOfStars = 3;
+let baseURL = "https://reels-movie-app.herokuapp.com"
 
 window.addEventListener("load", (e) => {
-  const url = `https://reels-movie-app.herokuapp.com/api/genres`;
+  const url = `${baseURL}/api/genres`;
   fetch(url)
     .then(
       (response) => {
@@ -40,7 +41,7 @@ window.addEventListener("load", (e) => {
 });
 
 const initialMovieRequest = () => {
-  const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
+  const url = `${baseURL}/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
     .then(
       (response) => {
@@ -95,7 +96,7 @@ const movieCredits = () => {
   let promiseArray = [];
   for (let i = movieIndex; i < searchResults.length; i++) {
     let movieId = searchResults[i].id;
-    const url = `http://localhost:5001/api/movies/${movieId}/credits`;
+    const url = `${baseURL}/api/movies/${movieId}/credits`;
     const promiseVariable = fetch(url)
       .then(
         (response) => {
@@ -204,7 +205,7 @@ nextMovieButtonMobile.addEventListener("click", nextMovie);
 nextMovieButtonDesktop.addEventListener("click", nextMovie);
 
 const nextPageMovieRequest = (event) => {
-  const url = `http://localhost:5001/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
+  const url = `${baseURL}/api/discover/${movieYear.value}/${genreDropdown.value}/${pageSearchResults}`;
   fetch(url)
     .then(
       (response) => {
