@@ -585,7 +585,7 @@ body {
   justify-self: start;
 }
 
-@media (max-height: 701px) {
+@media (max-height: 700px) {
   .details__img--mobile {
     max-width: 80%;
     margin: auto;
