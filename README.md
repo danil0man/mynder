@@ -23,6 +23,7 @@
   ```
 - use `npm run start` to launch.
 - If modifying SCSS files, in a separate terminal, run `npm run watch` before working, this will compile the SCSS into CSS in the proper `public` folder. (don't use the VS Code GUI "Watch Sass" for file structure reasons).
+- The production version won't be changed until you follow the steps in the section below (even if you push to our github repo).
 
 ## Heroku Deployment
 
