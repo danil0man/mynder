@@ -1,7 +1,8 @@
 const express = require("express");
 const genresRouter = express.Router();
 const MovieDB = require("node-themoviedb");
-const { APIKEY } = require("./environment"); // process.env.MOVIEDB_API_KEY;
+// const { APIKEY } = require("./environment"); // DEVELOPMENT
+const APIKEY = process.env.APIKEY; // PRODUCTION
 const mdb = new MovieDB(APIKEY);
 
 module.exports = genresRouter;
