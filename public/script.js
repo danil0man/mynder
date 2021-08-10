@@ -16,7 +16,8 @@ let numberOfResultsCurrentPage;
 let numberOfPages;
 let movieLanguageFilter = "en"; // use 'any' for no language filter.
 let numberOfStars = 3;
-let baseURL = "https://reels-movie-app.herokuapp.com"
+//let baseURL = "https://reels-movie-app.herokuapp.com" // PRODUCTION
+let baseURL = "http://localhost:5001"; // DEVELOPMENT
 
 window.addEventListener("load", (e) => {
   const url = `${baseURL}/api/genres`;
